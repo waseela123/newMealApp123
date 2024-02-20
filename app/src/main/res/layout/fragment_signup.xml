@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/etUsernameSignup"
-        android:layout_width="280dp"
-        android:layout_height="71dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="138dp"
+        android:layout_marginBottom="38dp"
         android:ems="10"
         android:hint="username..."
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="138dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etPasswordSignup"
+        app:layout_constraintEnd_toEndOf="@+id/etPasswordSignup"
+        app:layout_constraintStart_toStartOf="@+id/etPasswordSignup"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etPasswordSignup"
         android:layout_width="284dp"
-        android:layout_height="85dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginBottom="37dp"
         android:ems="10"
         android:hint="password..."
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="247dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnSignupSignup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUsernameSignup" />
 
     <Button
         android:id="@+id/btnSignupSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="52dp"
         android:text="Signup"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="369dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordSignup" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="214dp"
         android:text="forgot password"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="469dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etPasswordSignup"
+        app:layout_constraintStart_toStartOf="@+id/etPasswordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignupSignup" />
 </androidx.constraintlayout.widget.ConstraintLayout>
