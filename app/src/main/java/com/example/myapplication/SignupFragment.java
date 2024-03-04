@@ -20,7 +20,6 @@ public class SignupFragment extends Fragment {
     private EditText etUsername, etPassword;
     private Button btnSignup;
     private FirebaseServices fbs;
-    private TextView  tvForgotPasswordLink;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,16 +76,7 @@ public class SignupFragment extends Fragment {
         etUsername = getView().findViewById(R.id.etUsernameSignup);
         etPassword = getView().findViewById(R.id.etPasswordSignup);
         btnSignup = getView().findViewById(R.id.btnSignupSignup);
-        tvForgotPasswordLink = getView().findViewById(R.id.tvForgotPasswordLink);
-        tvForgotPasswordLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoForgotPasswordFragment();
-            }
 
-            private void gotoForgotPasswordFragment() {
-            }
-        });
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

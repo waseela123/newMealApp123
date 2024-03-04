@@ -9,26 +9,30 @@
         android:id="@+id/etUsernameSignup"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="138dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="103dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="50dp"
         android:ems="10"
         android:hint="username..."
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/etPasswordSignup"
-        app:layout_constraintEnd_toEndOf="@+id/etPasswordSignup"
-        app:layout_constraintStart_toStartOf="@+id/etPasswordSignup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etPasswordSignup"
-        android:layout_width="284dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginBottom="37dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="119dp"
         android:ems="10"
         android:hint="password..."
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btnSignupSignup"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUsernameSignup" />
 
@@ -36,21 +40,11 @@
         android:id="@+id/btnSignupSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="321dp"
         android:text="Signup"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPasswordSignup" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="214dp"
-        android:text="forgot password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/etPasswordSignup"
-        app:layout_constraintStart_toStartOf="@+id/etPasswordSignup"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignupSignup" />
 </androidx.constraintlayout.widget.ConstraintLayout>
