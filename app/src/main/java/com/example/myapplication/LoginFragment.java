@@ -20,10 +20,10 @@ import com.google.firebase.auth.AuthResult;
 
 public class LoginFragment extends Fragment {
     private EditText etUsername, etPassword;
-    private TextView tvSignupLink;
+    private Button tvSignupLink;
     private Button btnLogin;
     private FirebaseServices fbs;
-    private TextView tvForgotPasswordLink;
+    private Button btnForgotPasswordLink;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,15 +79,15 @@ public class LoginFragment extends Fragment {
         etUsername = getView().findViewById(R.id.etUsernameLogin);
         etPassword = getView().findViewById(R.id.etPasswordLogin);
         btnLogin = getView().findViewById(R.id.btnLoginLogin);
-        tvSignupLink = getView().findViewById(R.id.tvSignupLinkLogin);
-        tvForgotPasswordLink = getView().findViewById(R.id.tvForgotPasswordLinkLogin);
+        tvSignupLink = getView().findViewById(R.id.btnSignupLinkLogin);
+        btnForgotPasswordLink = getView().findViewById(R.id.btnForgotPasswordLinkLogin);
         tvSignupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 gotoSignupFragment();
             }
         });
-        tvForgotPasswordLink.setOnClickListener(new View.OnClickListener() {
+        btnForgotPasswordLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 gotoForgotPasswordFragment();

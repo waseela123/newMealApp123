@@ -66,4 +66,5 @@ public class AddMealFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_meal, container, false);
     }
+
 }
