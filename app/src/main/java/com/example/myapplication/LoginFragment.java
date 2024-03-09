@@ -109,6 +109,7 @@ public class LoginFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
                         {
+                            gotoAddMealFragment();
                             Toast.makeText(getActivity(), "You have successfully login!", Toast.LENGTH_SHORT).show();
                         }
                         else
@@ -121,6 +122,13 @@ public class LoginFragment extends Fragment {
             }
         });
     }
+
+    private void gotoAddMealFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout, new AddMealFragment());
+        ft.commit();
+    }
+
     private void gotoSignupFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout, new SignupFragment());
