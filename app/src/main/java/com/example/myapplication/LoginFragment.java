@@ -111,6 +111,7 @@ public class LoginFragment extends Fragment {
                         {
                             gotoAddMealFragment();
                             Toast.makeText(getActivity(), "You have successfully login!", Toast.LENGTH_SHORT).show();
+                            gotoAddMealFragment();
                         }
                         else
                         {
@@ -139,5 +140,6 @@ public class LoginFragment extends Fragment {
         ft.replace(R.id.frameLayout, new ForgotPasswordFragment());
         ft.commit();
     }
+
 }
 
