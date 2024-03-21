@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.installations.Utils;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -127,15 +131,29 @@ public class AddMealFragment extends Fragment {
             return;
         }
 
-        Meal meal1;
+        Meal meal;
         if (fbs.getSelectedImageURL() == null)
         {
-            meal1 = new MealItem(mealname, price,ingredients, "");
+            meal = new Meal(mealname, Double.parseDouble(price),ingredients, "");
         }
         else {
-            meal1 = MealItem(mealname, price,ingredients, fbs.getSelectedImageURL().toString());
+            meal = new Meal(mealname, Double.parseDouble(price),ingredients, fbs.getSelectedImageURL().toString());
         }
-        fbs.getFire().collection("meals").add(meal);
+        fbs.getFire().collection("meals").add(meal).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                    Toast.makeText(getActivity(), "ADD Meal is Succesed ", Toast.LENGTH_SHORT).show();
+                    Log.e("addToFirestore() - add to collection: ", "Successful!");
+                    //gotoMealList();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "Can not ADD Meal! ", Toast.LENGTH_SHORT).show();
+                Log.e("addToFirestore() - add to collection: ", e.getMessage());
+            }
+        });
 
     }
 
@@ -156,5 +174,5 @@ public class AddMealFragment extends Fragment {
         }
     }
 
-}
+
 
