@@ -18,15 +18,31 @@ import java.util.ArrayList;
 
 public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> {
     Context context;
-    ArrayList<MealItem> carsList;
+    ArrayList<Meal> mealsList;
     private FirebaseServices fbs;
- this.itemClickListener = new OnItemClickListener() {
-        @Override
-        public void onItemClick(int position) {
+    private MealAdapter.OnItemClickListener itemClickListener;
 
-        }
-    } ;
-}
+    public MealAdapter( Context context, ArrayList<Meal> mealsList) {
+        this.context = context;
+        this.mealsList = mealsList;
+        this.fbs = FirebaseServices.getInstance();
+
+        this.itemClickListener = new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                   /*
+                String selectedItem = filteredList.get(position).getNameCar();
+                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show(); */
+                Bundle args = new Bundle();
+                args.putParcelable("meal", mealsList.get(position)); // or use Parcelable for better performance
+                MealDetailsFragment cd = new MealDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft= ((MainActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout,cd);
+                ft.commit();
+            }
+        };
+    }
     @NonNull
     @Override
     public MealAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
@@ -35,9 +51,10 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
     }
     @Override
     public void onBindViewHolder(@NonNull MealAdapter.MyViewHolder holder, int position){
-        MealItem meal= mealsList.get(position);
+        Meal meal= mealsList.get(position);
 
-        holder.mealName.setText(meal.getNameMeal());
+        holder.mealName.setText(meal.getName());
+        holder.Ingredients.setText(meal.getIngredients());
         holder.Price.setText(meal.getPrice() + " ₪");
         holder.mealName.setOnClickListener(v -> {
             if (itemClickListener != null) {
@@ -50,32 +67,28 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
                 clickListener.setOnItemClick(position);
             }
         }); */
-        if (meal.getPhoto() == null || meal.getPhoto().isEmpty())
+        if (meal.getPicture() == null || meal.getPicture().isEmpty())
         {
-            Picasso.get().load(R.drawable.ic_fav).into(holder.ivMeal);
         }
         else {
-            Picasso.get().load(meal.getPhoto()).into(holder.ivMeal);
+            Picasso.get().load(meal.getPicture()).into(holder.ivMeal);
         }
 
     }
     @Override
     public int getItemCount(){
-        return carsList.size();
+        return mealsList.size();
     }
 
 public static class MyViewHolder extends RecyclerView.ViewHolder{
-    TextView carName,Price,Year,location,GearShift,kilometre;
-    ImageView ivCar, ivFavourite;
+    TextView mealName,Price,Ingredients;
+    ImageView ivMeal;
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
-        carName=itemView.findViewById(R.id.tvNameCar_carListFragment);
-        Price=itemView.findViewById(R.id.tvPrice_carListFragment);
-        Year=itemView.findViewById(R.id.tvYear_carListFragment);
-        location=itemView.findViewById(R.id.tvlocation_carListFragment);
-        GearShift=itemView.findViewById(R.id.tvGearShift_carListFragment);
-        kilometre=itemView.findViewById(R.id.tvKelometer_carListFragment);
-        ivCar = itemView.findViewById(R.id.ivCarPhotoItem);
+        mealName=itemView.findViewById(R.id.etMealName);
+        Price=itemView.findViewById(R.id.etMealPrice);
+        ivMeal = itemView.findViewById(R.id.ivAddMealFragment);
+        Ingredients = itemView.findViewById(R.id.etMealIngredients);
 
     }
 }
@@ -84,7 +97,7 @@ public interface OnItemClickListener {
 
 }
 
-    public void setOnItemClickListener(CarListAdapter2.OnItemClickListener listener) {
+    public void setOnItemClickListener(MealAdapter.OnItemClickListener listener) {
         this.itemClickListener = listener;
     }
 

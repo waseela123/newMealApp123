@@ -32,7 +32,7 @@ public class MealListFragment extends Fragment {
     private FirebaseServices fbs;
     private MealAdapter myAdapter;
 
-    private ArrayList<MealItem> meals;
+    private ArrayList<Meal> meals;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -80,10 +80,8 @@ public class MealListFragment extends Fragment {
     }
 
     private void init() {
-        recyclerView = getView().findViewById(R.id.rvMeallistFragment);
-        ivProfile = getView().findViewById(R.id.ivProfileCarListMapFragment);
+        recyclerView = getView().findViewById(R.id.rvMealListFragment);
         fbs = FirebaseServices.getInstance();
-        fbs.setUserChangeFlag(false);
         /*if (fbs.getAuth().getCurrentUser() == null)
             fbs.setCurrentUser(fbs.getCurrentObjectUser()); */
         meals = new ArrayList<>();
@@ -94,6 +92,10 @@ public class MealListFragment extends Fragment {
 
         myAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(int position) {
+
+            }
         });
 
     }
@@ -104,20 +106,20 @@ public class MealListFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.meal_list_fragment, container, false);
     }
-    public ArrayList<MealItem> getCars()
+    public ArrayList<Meal> getMeals()
     {
-        ArrayList<MealItem> cars = new ArrayList<>();
+        ArrayList<Meal> meals = new ArrayList<>();
 
         try {
-            cars.clear();
-            fbs.getFire().collection("meal")
+            meals.clear();
+            fbs.getFire().collection("meals")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    meals.add(document.toObject(MealItem.class));
+                                    meals.add(document.toObject(Meal.class));
                                 }
 
                                 MealAdapter adapter = new MealAdapter(getActivity(), meals);
