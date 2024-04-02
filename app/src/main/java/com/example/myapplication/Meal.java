@@ -11,6 +11,9 @@ public class Meal implements Parcelable {
     private String ingredients;
     private String picture;
 
+    public Meal()
+    {}
+
     protected Meal(Parcel in) {
         name = in.readString();
         if (in.readByte() == 0) {

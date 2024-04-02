@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -144,7 +145,7 @@ public class AddMealFragment extends Fragment {
             public void onSuccess(DocumentReference documentReference) {
                     Toast.makeText(getActivity(), "ADD Meal is Succesed ", Toast.LENGTH_SHORT).show();
                     Log.e("addToFirestore() - add to collection: ", "Successful!");
-                    //gotoMealList();
+                    gotoMealList();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -155,6 +156,12 @@ public class AddMealFragment extends Fragment {
             }
         });
 
+    }
+
+    private void gotoMealList() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout, new MealListFragment());
+        ft.commit();
     }
 
     private void openGallery() {

@@ -126,7 +126,7 @@ public class MealListFragment extends Fragment {
                                 recyclerView.setAdapter(adapter);
                                 //addUserToCompany(companies, user);
                             } else {
-                                //Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
+                                Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
                             }
                         }
                     });
