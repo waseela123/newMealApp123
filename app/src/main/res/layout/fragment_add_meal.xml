@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:foregroundTint="#5E0600"
+    android:foregroundTint="#040303"
     tools:context=".AddMealFragment">
 
 
@@ -17,8 +17,8 @@
         android:drawableTint="#5E0600"
         android:ems="10"
         android:foregroundTint="#5E0600"
+        android:hint="Enter Meal Name"
         android:inputType="text"
-        android:text="Enter Meal Name"
         android:textColorLink="#5E0600"
         app:layout_constraintBottom_toTopOf="@+id/etMealPrice"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,11 +29,11 @@
         android:id="@+id/etMealPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="76dp"
         android:ems="10"
+        android:hint="Enter Meal Price"
         android:inputType="text"
-        android:text="Enter Meal Price"
-        app:layout_constraintBottom_toTopOf="@+id/etMealIngredients"
+        app:layout_constraintBottom_toTopOf="@+id/ivAddMealFragment"
         app:layout_constraintStart_toStartOf="@+id/etMealName"
         app:layout_constraintTop_toBottomOf="@+id/etMealName" />
 
@@ -41,27 +41,33 @@
         android:id="@+id/etMealIngredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="1dp"
         android:ems="10"
+        android:hint="Enter Meal Ingredients"
         android:inputType="text"
-        android:text="Enter Meal Ingredients"
         app:layout_constraintBottom_toTopOf="@+id/ivAddMealFragment"
-        app:layout_constraintStart_toStartOf="@+id/ivAddMealFragment"
-        app:layout_constraintTop_toBottomOf="@+id/etMealPrice" />
+        app:layout_constraintEnd_toEndOf="@+id/etMealPrice"
+        app:layout_constraintTop_toTopOf="@+id/ivAddMealFragment" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="323dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginBottom="37dp"
-        android:shadowColor="#5E0600"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="8dp"
+        android:shadowColor="#100F0F"
         android:text="Enter the important data for the new meal:"
-        android:textColorHint="#5E0600"
-        android:textColorLink="#5E0600"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#7C0909"
+        android:textColorHint="#100F0F"
+        android:textColorLink="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/etMealName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,23 +75,22 @@
         android:id="@+id/ivAddMealFragment"
         android:layout_width="129dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="73dp"
-        android:src="@drawable/ic_launcher_background"
+        android:layout_marginStart="31dp"
+        android:src="@drawable/photoadd"
         app:layout_constraintBottom_toTopOf="@+id/btnAddMealFragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMealIngredients" />
+        app:layout_constraintStart_toStartOf="@+id/etMealIngredients"
+        app:layout_constraintTop_toBottomOf="@+id/etMealPrice" />
 
     <Button
         android:id="@+id/btnAddMealFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="186dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="137dp"
         android:backgroundTint="#5E0600"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ivAddMealFragment"
         app:layout_constraintTop_toBottomOf="@+id/ivAddMealFragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

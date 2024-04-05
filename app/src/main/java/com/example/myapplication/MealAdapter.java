@@ -54,7 +54,6 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         Meal meal= mealsList.get(position);
 
         holder.mealName.setText(meal.getName());
-        holder.Ingredients.setText(meal.getIngredients());
         holder.Price.setText(meal.getPrice() + " ₪");
         holder.mealName.setOnClickListener(v -> {
             if (itemClickListener != null) {
@@ -81,14 +80,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
     }
 
 public static class MyViewHolder extends RecyclerView.ViewHolder{
-    TextView mealName,Price,Ingredients;
+    TextView mealName,Price;
     ImageView ivMeal;
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
-        mealName=itemView.findViewById(R.id.etMealName);
-        Price=itemView.findViewById(R.id.etMealPrice);
-        ivMeal = itemView.findViewById(R.id.ivAddMealFragment);
-        Ingredients = itemView.findViewById(R.id.etMealIngredients);
+        mealName=itemView.findViewById(R.id.tvMealName);
+        Price=itemView.findViewById(R.id.tvMealPrice);
+        ivMeal = itemView.findViewById(R.id.ivMealimage);
+
 
     }
 }

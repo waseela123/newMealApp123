@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -13,7 +15,9 @@ import android.view.ViewGroup;
  *
  */
 public class MealDetailsFragment extends Fragment {
-
+    private TextView tvMealName,tvPrice,tvIngredients;
+    private ImageView ivMealPhoto;
+    private Meal myMeal;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,4 +64,9 @@ public class MealDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_meal_details, container, false);
     }
+@Override
+    public void onStart(){
+        super.onStart();
+
+}
 }
