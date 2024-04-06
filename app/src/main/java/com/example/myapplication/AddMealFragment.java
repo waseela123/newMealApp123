@@ -143,7 +143,7 @@ public class AddMealFragment extends Fragment {
         fbs.getFire().collection("meals").add(meal).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(getActivity(), "ADD Meal is Succesed ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "ADD Meal is Succeeded ", Toast.LENGTH_SHORT).show();
                     Log.e("addToFirestore() - add to collection: ", "Successful!");
                     gotoMealList();
 

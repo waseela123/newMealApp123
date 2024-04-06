@@ -130,6 +130,7 @@ public class MealListFragment extends Fragment {
                             }
                         }
                     });
+
         }
         catch (Exception e)
         {
@@ -138,5 +139,7 @@ public class MealListFragment extends Fragment {
 
         return meals;
     }
+
+
 
 }

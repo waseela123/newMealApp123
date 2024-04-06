@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MealDetailsFragment#newInstance} factory method to
@@ -15,9 +17,13 @@ import android.widget.TextView;
  *
  */
 public class MealDetailsFragment extends Fragment {
-    private TextView tvMealName,tvPrice,tvIngredients;
-    private ImageView ivMealPhoto;
+    private TextView tvMealName, tvPrice, tvIngredients;
+    private ImageView ivMealPic;
     private Meal myMeal;
+    private FirebaseServices fbs;
+    private boolean isEnlarged = false; //משתנה כדי לעקוב אחרי המצב הנוכחי של התמונה (האם היא מגודלת או לא)
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,9 +70,57 @@ public class MealDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_meal_details, container, false);
     }
-@Override
-    public void onStart(){
-        super.onStart();
 
-}
-}
+    @Override
+    public void onStart() {
+        super.onStart();
+        init();
+        ImageView ivMealPhoto = getView().findViewById(R.id.ivMealPicDetails);
+
+        ivMealPhoto.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+                ViewGroup.LayoutParams layoutParams = ivMealPhoto.getLayoutParams();
+                if (isEnlarged) {
+                    layoutParams.height = 500;
+                } else {
+                    layoutParams.height = 2200;
+                }
+                ivMealPhoto.setLayoutParams(layoutParams);
+
+                // נשנה את המצב הנוכחי של התמונה
+                isEnlarged = !isEnlarged;
+
+            }
+        });
+    }
+        public void init()
+        {
+            /*Meal(String nameMeal,  String price, String ingredients String photo)
+             * */
+
+            fbs = FirebaseServices.getInstance();
+            tvMealName= getView().findViewById(R.id.tvMealNameDetails);
+            tvPrice = getView().findViewById(R.id.tvPriceDetails);
+            tvIngredients= getView().findViewById(R.id.tvIngredientsDetails);
+            ivMealPic = getView().findViewById(R.id.ivMealPicDetails);
+
+            Bundle args = getArguments();
+            if (args != null){
+             myMeal = args.getParcelable("meal");
+             if (myMeal != null){
+                 tvMealName.setText(myMeal.getName());
+                 tvIngredients.setText(myMeal.getIngredients());
+                 tvPrice.setText(myMeal.getPrice()+" ₪");
+                 if (myMeal.getPicture() == null || myMeal.getPicture().isEmpty())
+                 {
+                 }
+                 else {
+                     Picasso.get().load(myMeal.getPicture()).into(ivMealPic);
+                 }
+             }
+            }
+        }
+    }

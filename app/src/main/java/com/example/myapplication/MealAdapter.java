@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -87,7 +89,6 @@ public static class MyViewHolder extends RecyclerView.ViewHolder{
         mealName=itemView.findViewById(R.id.tvMealName);
         Price=itemView.findViewById(R.id.tvMealPrice);
         ivMeal = itemView.findViewById(R.id.ivMealimage);
-
 
     }
 }
