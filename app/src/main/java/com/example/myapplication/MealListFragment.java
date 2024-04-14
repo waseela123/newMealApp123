@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,7 +33,7 @@ public class MealListFragment extends Fragment {
     private FirebaseServices fbs;
     private MealAdapter myAdapter;
 
-    private ArrayList<Meal> meals;
+    private ArrayList<Meal> meals,filteredList;;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -89,22 +90,90 @@ public class MealListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         meals = getMeals();
         myAdapter = new MealAdapter(getActivity(), meals);
-
+        filteredList = new ArrayList<>();
         myAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
 
             @Override
             public void onItemClick(int position) {
-
+                // Handle item click here
+                String selectedItem = meals.get(position).getName();
+                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+                Bundle args = new Bundle();
+                args.putParcelable("meal", meals.get(position)); // or use Parcelable for better performance
+               MealDetailsFragment cd = new MealDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout,cd);
+                ft.commit();
             }
         });
 
     }
+    private void applyFilter(String query) {
+        // TODO: add onBackspace - old and new query
+        if (query.trim().isEmpty())
+        {
+            myAdapter = new MealAdapter(getContext(), meals);
+            recyclerView.setAdapter(myAdapter);
+            //myAdapter.notifyDataSetChanged();
+            return;
+        }
+        filteredList.clear();
+        for(Meal meal : filteredList)
+        {
+            if (meal.getIngredients().toLowerCase().contains(query.toLowerCase()) ||
+                    meal.getPicture().toLowerCase().contains(query.toLowerCase()) ||
+                    meal.getName().toLowerCase().contains(query.toLowerCase()) ||
+                   meal.getPrice().toString().contains((query.toLowerCase())))
+            {
+                filteredList.add(meal);
+            }
+        }
+        if (filteredList.size() == 0)
+        {
+            showNoDataDialogue();
+            return;
+        }
+        myAdapter = new MealAdapter(getContext(), filteredList);
+        recyclerView.setAdapter(myAdapter);
 
+       /*
+        myAdapter= new CarListAdapter2(getActivity(),filteredList);
+        recyclerView.setAdapter(myAdapter); */
+
+        myAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                /*
+                // Handle item click here
+                String selectedItem = filteredList.get(position).getNameCar();
+                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+                Bundle args = new Bundle();
+                args.putParcelable("car", filteredList.get(position)); // or use Parcelable for better performance
+                CarDetailsFragment cd = new CarDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout,cd);
+                ft.commit(); */
+            }
+        });
+    }
+    private void showNoDataDialogue() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("No Results");
+        builder.setMessage("Try again!");
+        builder.show();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.meal_list_fragment, container, false);
+    }
+    public void gotoAddMealFragment() {
+        FragmentTransaction ft= getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout,new AddMealFragment());
+        ft.commit();
     }
     public ArrayList<Meal> getMeals()
     {
