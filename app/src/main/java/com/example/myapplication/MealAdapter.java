@@ -29,21 +29,6 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         this.mealsList = mealsList;
         this.fbs = FirebaseServices.getInstance();
 
-        this.itemClickListener = new OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                   /*
-                String selectedItem = filteredList.get(position).getNameCar();
-                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show(); */
-                Bundle args = new Bundle();
-                args.putParcelable("meal", mealsList.get(position)); // or use Parcelable for better performance
-                MealDetailsFragment cd = new MealDetailsFragment();
-                cd.setArguments(args);
-                FragmentTransaction ft= ((MainActivity)context).getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frameLayout,cd);
-                ft.commit();
-            }
-        };
     }
     @NonNull
     @Override
@@ -74,7 +59,21 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         else {
             Picasso.get().load(meal.getPicture()).into(holder.ivMeal);
         }
-
+        this.itemClickListener = new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                   /*
+                String selectedItem = filteredList.get(position).getNameCar();
+                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show(); */
+                Bundle args = new Bundle();
+                args.putParcelable("meal", mealsList.get(position)); // or use Parcelable for better performance
+                MealDetailsFragment cd = new MealDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft= ((MainActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout,cd);
+                ft.commit();
+            }
+        };
     }
     @Override
     public int getItemCount(){
