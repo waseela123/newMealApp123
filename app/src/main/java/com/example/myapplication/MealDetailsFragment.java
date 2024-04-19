@@ -82,13 +82,13 @@ public class MealDetailsFragment extends Fragment {
             @Override
 
             public void onClick(View v) {
-                ViewGroup.LayoutParams layoutParams = ivMealPhoto.getLayoutParams();
+                ViewGroup.LayoutParams layoutParams = ivMealPic.getLayoutParams();
                 if (isEnlarged) {
                     layoutParams.height = 500;
                 } else {
                     layoutParams.height = 2200;
                 }
-                ivMealPhoto.setLayoutParams(layoutParams);
+                ivMealPic.setLayoutParams(layoutParams);
 
                 // נשנה את המצב הנוכחי של התמונה
                 isEnlarged = !isEnlarged;

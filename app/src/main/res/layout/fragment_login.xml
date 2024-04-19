@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="68dp"
         android:layout_marginEnd="68dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:hint="username.."
         android:inputType="textEmailAddress"
@@ -27,7 +27,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="68dp"
         android:layout_marginEnd="68dp"
-        android:layout_marginBottom="400dp"
+        android:layout_marginBottom="449dp"
         android:ems="10"
         android:hint="password..."
         android:inputType="textPassword"
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="#5E0600"
         android:text="Login"
         app:layout_constraintBottom_toTopOf="@+id/btnSignupLinkLogin"
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="29dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="#5E0600"
         android:text="Sign Up"
         app:layout_constraintBottom_toTopOf="@+id/btnForgotPasswordLinkLogin"
@@ -62,12 +62,11 @@
         android:id="@+id/btnForgotPasswordLinkLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="194dp"
+        android:layout_marginBottom="14dp"
         android:backgroundTint="#5E0600"
         android:text="Forgot Password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/btnAddLinkAddMealFragment"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddLinkAddMealFragment" />
 
     <TextView
         android:id="@+id/textView"
@@ -85,9 +84,20 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="78dp"
+        android:layout_marginBottom="30dp"
         android:text="Welcome to my restaurant."
         app:layout_constraintBottom_toTopOf="@+id/etUsernameLogin"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnAddLinkAddMealFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="160dp"
+        android:backgroundTint="#5E0600"
+        android:text="GO TO ADD MEAL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

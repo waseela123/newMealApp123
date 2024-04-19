@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -22,6 +21,7 @@ public class LoginFragment extends Fragment {
     private EditText etUsername, etPassword;
     private Button tvSignupLink;
     private Button btnLogin;
+    private Button btnAddLinkAddMeal;
     private FirebaseServices fbs;
     private Button btnForgotPasswordLink;
 
@@ -81,6 +81,13 @@ public class LoginFragment extends Fragment {
         btnLogin = getView().findViewById(R.id.btnLoginLogin);
         tvSignupLink = getView().findViewById(R.id.btnSignupLinkLogin);
         btnForgotPasswordLink = getView().findViewById(R.id.btnForgotPasswordLinkLogin);
+        btnAddLinkAddMeal = getView().findViewById(R.id.btnAddLinkAddMealFragment);
+        btnAddLinkAddMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoAddMealFragment();
+            }
+        });
         tvSignupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +100,7 @@ public class LoginFragment extends Fragment {
                 gotoForgotPasswordFragment();
             }
         });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,9 +117,8 @@ public class LoginFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
                         {
-                            gotoAddMealFragment();
                             Toast.makeText(getActivity(), "You have successfully login!", Toast.LENGTH_SHORT).show();
-                            gotoAddMealFragment();
+                            gotoMealListFragment();
                         }
                         else
                         {
@@ -140,6 +147,11 @@ public class LoginFragment extends Fragment {
         ft.replace(R.id.frameLayout, new ForgotPasswordFragment());
         ft.commit();
     }
-
+    private void gotoMealListFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout, new MealListFragment());
+        ft.commit();
+    }
 }
+
 

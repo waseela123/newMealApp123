@@ -32,7 +32,7 @@ public class MealListFragment extends Fragment {
     private RecyclerView recyclerView;
     private FirebaseServices fbs;
     private MealAdapter myAdapter;
-
+    private SearchView srchView;
     private ArrayList<Meal> meals,filteredList;;
 
 
@@ -107,7 +107,21 @@ public class MealListFragment extends Fragment {
                 ft.commit();
             }
         });
+        srchView = getView().findViewById(R.id.srchViewMealListFragment);
+        srchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                applyFilter(query);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //applyFilter(newText);
+                return false;
+            }
+        });
+        //((MainActivity)getActivity()).pushFragment(new MealListFragment());
     }
     private void applyFilter(String query) {
         // TODO: add onBackspace - old and new query
@@ -115,11 +129,11 @@ public class MealListFragment extends Fragment {
         {
             myAdapter = new MealAdapter(getContext(), meals);
             recyclerView.setAdapter(myAdapter);
-            //myAdapter.notifyDataSetChanged();
+            //MealAdapter.notifyDataSetChanged();
             return;
         }
         filteredList.clear();
-        for(Meal meal : filteredList)
+        for(Meal meal : meals)
         {
             if (meal.getIngredients().toLowerCase().contains(query.toLowerCase()) ||
                     meal.getPicture().toLowerCase().contains(query.toLowerCase()) ||
@@ -137,20 +151,18 @@ public class MealListFragment extends Fragment {
         myAdapter = new MealAdapter(getContext(), filteredList);
         recyclerView.setAdapter(myAdapter);
 
-       /*
-        myAdapter= new CarListAdapter2(getActivity(),filteredList);
-        recyclerView.setAdapter(myAdapter); */
+
 
         myAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 /*
                 // Handle item click here
-                String selectedItem = filteredList.get(position).getNameCar();
+                String selectedItem = filteredList.get(position).getNameMeal();
                 Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
                 args.putParcelable("car", filteredList.get(position)); // or use Parcelable for better performance
-                CarDetailsFragment cd = new CarDetailsFragment();
+                MealDetailsFragment cd = new MealDetailsFragment();
                 cd.setArguments(args);
                 FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frameLayout,cd);
@@ -170,11 +182,7 @@ public class MealListFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.meal_list_fragment, container, false);
     }
-    public void gotoAddMealFragment() {
-        FragmentTransaction ft= getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayout,new AddMealFragment());
-        ft.commit();
-    }
+
     public ArrayList<Meal> getMeals()
     {
         ArrayList<Meal> meals = new ArrayList<>();

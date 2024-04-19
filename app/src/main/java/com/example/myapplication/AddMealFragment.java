@@ -145,7 +145,7 @@ public class AddMealFragment extends Fragment {
             public void onSuccess(DocumentReference documentReference) {
                     Toast.makeText(getActivity(), "ADD Meal is Succeeded ", Toast.LENGTH_SHORT).show();
                     Log.e("addToFirestore() - add to collection: ", "Successful!");
-                    gotoMealList();
+
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -158,11 +158,7 @@ public class AddMealFragment extends Fragment {
 
     }
 
-    private void gotoMealList() {
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayout, new MealListFragment());
-        ft.commit();
-    }
+
 
     private void openGallery() {
             Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
