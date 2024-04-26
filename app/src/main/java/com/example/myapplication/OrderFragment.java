@@ -25,16 +25,15 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MealListFragment#newInstance} factory method to
+ * Use the {@link OrderFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MealListFragment extends Fragment {
+public class OrderFragment extends Fragment {
     private RecyclerView recyclerView;
     private FirebaseServices fbs;
-    private MealAdapter myAdapter;
-    private SearchView srchView;
-    private ArrayList<Meal> meals,filteredList;;
-
+    private MealAdapter mealAdapter;
+    private SearchView searchView;
+    private ArrayList<Meal> meals,filteredList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,7 +44,7 @@ public class MealListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MealListFragment() {
+    public OrderFragment() {
         // Required empty public constructor
     }
 
@@ -55,11 +54,11 @@ public class MealListFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MealListFragment.
+     * @return A new instance of fragment OrderFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MealListFragment newInstance(String param1, String param2) {
-        MealListFragment fragment = new MealListFragment();
+    public static OrderFragment newInstance(String param1, String param2) {
+        OrderFragment fragment = new OrderFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,20 +78,15 @@ public class MealListFragment extends Fragment {
         super.onStart();
         init();
     }
-
     private void init() {
         recyclerView = getView().findViewById(R.id.rvMealListFragment);
         fbs = FirebaseServices.getInstance();
-        /*if (fbs.getAuth().getCurrentUser() == null)
-            fbs.setCurrentUser(fbs.getCurrentObjectUser()); */
         meals = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        meals = getMeals();
-        myAdapter = new MealAdapter(getActivity(), meals);
-        filteredList = new ArrayList<>();
-        myAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
-
+        // meals = getMeals;
+        mealAdapter = new MealAdapter(getActivity(), meals);
+        mealAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 // Handle item click here
@@ -100,15 +94,15 @@ public class MealListFragment extends Fragment {
                 Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
                 args.putParcelable("meal", meals.get(position)); // or use Parcelable for better performance
-               MealDetailsFragment cd = new MealDetailsFragment();
+                MealDetailsFragment cd = new MealDetailsFragment();
                 cd.setArguments(args);
                 FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frameLayout,cd);
                 ft.commit();
             }
         });
-        srchView = getView().findViewById(R.id.srchViewMealListFragment);
-        srchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView = getView().findViewById(R.id.srchViewOrderFragment);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 applyFilter(query);
@@ -121,55 +115,51 @@ public class MealListFragment extends Fragment {
                 return false;
             }
         });
-        //((MainActivity)getActivity()).pushFragment(new MealListFragment());
     }
-    private void applyFilter(String query) {
+    private void applyFilter(String query){
         // TODO: add onBackspace - old and new query
         if (query.trim().isEmpty())
         {
-            myAdapter = new MealAdapter(getContext(), meals);
-            recyclerView.setAdapter(myAdapter);
-            //MealAdapter.notifyDataSetChanged();
-            return;
-        }
+        mealAdapter = new MealAdapter(getContext(), meals);
+        recyclerView.setAdapter(mealAdapter);
+        return;
+    }
         filteredList.clear();
         for(Meal meal :  meals)
+    {
+        if (meal.getIngredients().toLowerCase().contains(query.toLowerCase()) ||
+                meal.getPicture().toLowerCase().contains(query.toLowerCase()) ||
+                meal.getName().toLowerCase().contains(query.toLowerCase()) ||
+                meal.getPrice().toString().contains((query.toLowerCase())))
         {
-            if (meal.getIngredients().toLowerCase().contains(query.toLowerCase()) ||
-                    meal.getPicture().toLowerCase().contains(query.toLowerCase()) ||
-                    meal.getName().toLowerCase().contains(query.toLowerCase()) ||
-                   meal.getPrice().toString().contains((query.toLowerCase())))
-            {
-                filteredList.add(meal);
-            }
+            filteredList.add(meal);
         }
+    }
         if (filteredList.size() == 0)
-        {
-            showNoDataDialogue();
-            return;
-        }
-        myAdapter = new MealAdapter(getContext(), filteredList);
-        recyclerView.setAdapter(myAdapter);
 
+    {
+        showNoDataDialogue();
+        return;
+    }
+    mealAdapter = new MealAdapter(getContext(), filteredList);
+        recyclerView.setAdapter(mealAdapter);
+          mealAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(int position) {
 
-
-        myAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                /*
                 // Handle item click here
-                String selectedItem = filteredList.get(position).getNameMeal();
+                String selectedItem = filteredList.get(position).getName();
                 Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
-                args.putParcelable(meal", filteredList.get(position)); // or use Parcelable for better performance
+                args.putParcelable("meal", filteredList.get(position)); // or use Parcelable for better performance
                 MealDetailsFragment cd = new MealDetailsFragment();
                 cd.setArguments(args);
                 FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frameLayout,cd);
-                ft.commit(); */
-            }
-        });
-    }
+                ft.commit();
+        }
+    });
+}
     private void showNoDataDialogue() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("No Results");
@@ -180,9 +170,8 @@ public class MealListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.meal_list_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_order, container, false);
     }
-
     public ArrayList<Meal> getMeals()
     {
         ArrayList<Meal> meals = new ArrayList<>();
@@ -196,18 +185,23 @@ public class MealListFragment extends Fragment {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    meals.add(document.toObject(Meal.class));
+                                    User u;
+                                     u = fbs.getCurrentUser();
+                                    if (u != null) {
+                                        Meal meal = document.toObject(Meal.class);
+                                        if (u.getOrders().contains(meal.getId()))
+                                            meals.add(document.toObject(Meal.class));
+                                    }
                                 }
 
                                 MealAdapter adapter = new MealAdapter(getActivity(), meals);
                                 recyclerView.setAdapter(adapter);
                                 //addUserToCompany(companies, user);
                             } else {
-                                Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
+                                //Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
                             }
                         }
                     });
-
         }
         catch (Exception e)
         {
@@ -216,7 +210,12 @@ public class MealListFragment extends Fragment {
 
         return meals;
     }
+    @Override
+    public void onPause() {
+        super.onPause();
 
-
-
+        User u = ((MainActivity)getActivity()).getUserDataObject();
+        if (u != null)
+            fbs.updateUser(u); // updating favorites
+    }
 }
