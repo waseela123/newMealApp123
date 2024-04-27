@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/pg2">
     <!-- recycler_view_item.xml -->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -43,8 +44,8 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/ivMealimage"
             android:text="Meal Name"
-            android:textSize="30sp"
-            android:textColor="#610707"/>
+            android:textColor="#610707"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tvMealPrice"
@@ -55,8 +56,8 @@
             android:layout_marginTop="4dp"
             android:layout_toEndOf="@id/ivMealimage"
             android:text="Price"
-            android:textSize="20sp"
-            android:textColor="#610707"/>
+            android:textColor="#610707"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

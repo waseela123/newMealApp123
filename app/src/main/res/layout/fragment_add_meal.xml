@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/pg2"
     android:foregroundTint="#040303"
     tools:context=".AddMealFragment">
 
@@ -52,8 +52,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="107dp"
         android:layout_marginEnd="38dp"
@@ -69,6 +69,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/ivAddMealFragment"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,16 +94,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ivAddMealFragment"
         app:layout_constraintTop_toBottomOf="@+id/ivAddMealFragment" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="17dp"
-        android:src="@drawable/backicon"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
