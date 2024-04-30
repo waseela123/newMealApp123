@@ -189,7 +189,7 @@ public class FavoriteFragment extends Fragment {
                                      u = fbs.getCurrentUser();
                                     if (u != null) {
                                         Meal meal = document.toObject(Meal.class);
-                                        if (u.getOrders().contains(meal.getId()))
+                                        if (u.getFavorites().contains(meal.getName()))
                                             meals.add(document.toObject(Meal.class));
                                     }
                                 }

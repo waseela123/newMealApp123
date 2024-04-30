@@ -22,6 +22,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 
+import java.util.UUID;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AddMealFragment#newInstance} factory method to
@@ -135,10 +137,10 @@ public class AddMealFragment extends Fragment {
         Meal meal;
         if (fbs.getSelectedImageURL() == null)
         {
-            meal = new Meal(mealname, Double.parseDouble(price),ingredients, "");
+                meal = new Meal(UUID.randomUUID().toString(),mealname, Double.parseDouble(price),ingredients, "");
         }
         else {
-            meal = new Meal(mealname, Double.parseDouble(price),ingredients, fbs.getSelectedImageURL().toString());
+            meal = new Meal(UUID.randomUUID().toString(),mealname, Double.parseDouble(price),ingredients, fbs.getSelectedImageURL().toString());
         }
         fbs.getFire().collection("meals").add(meal).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override

@@ -7,23 +7,23 @@ import java.util.ArrayList;
 public class User {
     private String firstName;
     private String lastName;
-    private String username;
+    private String userName;
+    private String Address;
+    private  String phoneNumber;
     private String photo;
-    private ArrayList<String> orders;
+    private ArrayList<String> favorites;
     public User() {
     }
     public User(String firstName, String lastName, String username, String phone, String address, String photo) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
-
+        this.userName = username;
         this.photo = photo;
-        this.orders = new ArrayList<>();
+        this.favorites = new ArrayList<>();
     }
 
     public User(Parcel in) {
     }
-
     public String getFirstName() {
         return firstName;
     }
@@ -40,12 +40,28 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getPhoto() {
@@ -56,12 +72,12 @@ public class User {
         this.photo = photo;
     }
 
-    public ArrayList<String> getOrders() {
-        return orders;
+    public ArrayList<String> getFavorites() {
+        return favorites;
     }
 
-    public void setOrders(ArrayList<String> favourits) {
-        this.orders = favourits;
+    public void setFavorites(ArrayList<String> favorites) {
+        this.favorites = favorites;
     }
 
     @Override
@@ -69,8 +85,12 @@ public class User {
         return "User{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", username='" + username + '\'' +
-                ", Photo='" + photo + '\'' +
+                ", userName='" + userName + '\'' +
+                ", Address='" + Address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", photo='" + photo + '\'' +
+                ", favorites=" + favorites +
                 '}';
     }
+
 }

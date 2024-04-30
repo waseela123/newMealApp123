@@ -16,48 +16,46 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/ivOrderIcon"
+                android:id="@+id/ivFavouiteIcon"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="5dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="16dp"
                 android:clickable="true"
-                android:src="@drawable/picplus"
+                android:src="@drawable/ic_fav"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvMealPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textColor="#610707"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="129dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <TextView
+                android:id="@+id/tvMealName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meal Name"
+                android:textColor="#610707"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="129dp"
+                tools:layout_editor_absoluteY="41dp" />
+
+            <ImageView
+                android:id="@+id/ivMealimage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/photoadd"
+                tools:layout_editor_absoluteX="3dp"
+                tools:layout_editor_absoluteY="34dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/ivMealimage"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/photoadd" />
-
-        <TextView
-            android:id="@+id/tvMealName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/ivMealimage"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/ivMealimage"
-            android:text="Meal Name"
-            android:textColor="#610707"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/tvMealPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvMealName"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_toEndOf="@id/ivMealimage"
-            android:text="Price"
-            android:textColor="#610707"
-            android:textSize="20sp" />
 
     </RelativeLayout>
 

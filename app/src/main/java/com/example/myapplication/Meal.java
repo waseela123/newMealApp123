@@ -6,15 +6,25 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class Meal implements Parcelable {
+    private String id;
     private String name;
     private Double price;
     private String ingredients;
     private String picture;
 
+    public Meal(String id, String name, Double price, String ingredients, String picture) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.ingredients = ingredients;
+        this.picture = picture;
+    }
+
     public Meal()
     {}
 
     protected Meal(Parcel in) {
+        id = in.readString();
         name = in.readString();
         if (in.readByte() == 0) {
             price = null;
@@ -37,22 +47,14 @@ public class Meal implements Parcelable {
         }
     };
 
-    @Override
-    public String toString() {
-        return "Meal{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", ingredients='" + ingredients + '\'' +
-                ", picture='" + picture + '\'' +
-                '}';
+    public String getId() {
+        return id;
     }
 
-    public Meal(String name, Double price, String ingredients, String picture){
-        this.name = name;
-        this.price = price;
-        this.ingredients =ingredients;
-        this.picture = picture;
+    public void setId(String id) {
+        this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -86,12 +88,24 @@ public class Meal implements Parcelable {
     }
 
     @Override
+    public String toString() {
+        return "Meal{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", ingredients='" + ingredients + '\'' +
+                ", picture='" + picture + '\'' +
+                '}';
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(name);
         if (price == null) {
             dest.writeByte((byte) 0);

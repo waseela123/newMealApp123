@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,18 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         this.context = context;
         this.mealsList = mealsList;
         this.fbs = FirebaseServices.getInstance();
+        this.itemClickListener = new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
 
+                fbs.setSelectedMeal( mealsList.get(position));
+
+                MealDetailsFragment cd = new MealDetailsFragment();
+                FragmentTransaction ft= ((MainActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout,cd);
+                ft.commit();
+            }
+        };
     }
     @NonNull
     @Override
@@ -37,9 +49,15 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         return  new MealAdapter.MyViewHolder(v);
     }
     @Override
-    public void onBindViewHolder(@NonNull MealAdapter.MyViewHolder holder, int position){
-        Meal meal= mealsList.get(position);
-
+    public void onBindViewHolder(@NonNull MealAdapter.MyViewHolder holder, int position) {
+        Meal meal = mealsList.get(position);
+        User u = fbs.getCurrentUser();
+        if (u != null) {
+            if (u.getFavorites().contains(meal.getId()))
+                Picasso.get().load(R.drawable.favcheck).into(holder.ivFavourite);
+            else
+                Picasso.get().load(R.drawable.ic_fav).into(holder.ivFavourite);
+        }
         holder.mealName.setText(meal.getName());
         holder.Price.setText(meal.getPrice() + " ₪");
         holder.mealName.setOnClickListener(v -> {
@@ -53,12 +71,23 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
                 clickListener.setOnItemClick(position);
             }
         }); */
-        if (meal.getPicture() == null || meal.getPicture().isEmpty())
-        {
-        }
-        else {
+        if (meal.getPicture() == null || meal.getPicture().isEmpty()) {
+        } else {
             Picasso.get().load(meal.getPicture()).into(holder.ivMeal);
         }
+        holder.ivFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isFavorite(meal) == true) {
+                    removeStar(meal, holder);
+                } else {
+                    addStar(meal, holder);
+                }
+                fbs.setUserChangeFlag(true);
+                //setFavourite(holder, car);
+            }
+        });
+
         this.itemClickListener = new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -75,12 +104,40 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
             }
         };
     }
+    private void removeStar(Meal meal, MealAdapter.MyViewHolder holder) {
+        User u = fbs.getCurrentUser();
+        if (u != null) {
+            if (u.getFavorites().contains(meal.getId())) {
+                u.getFavorites().remove(meal.getId());
+                holder.ivFavourite.setImageResource(android.R.color.transparent);
+                Picasso.get().load(R.drawable.ic_fav).into(holder.ivFavourite);
+            }
+        }
+    }
+    private void addStar(Meal meal, MealAdapter.MyViewHolder holder) {
+        User u = fbs.getCurrentUser();
+        if (u != null) {
+            u.getFavorites().add(meal.getId());
+            holder.ivFavourite.setImageResource(android.R.color.transparent);
+            Picasso.get().load(R.drawable.favcheck).into(holder.ivFavourite);
+        }
+    }
+    private boolean isFavorite(Meal meal) {
+        User u = fbs.getCurrentUser();
+        if (u != null)
+        {
+            if (u.getFavorites().contains(meal.getId()))
+                return true;
+        }
+        return false;
+    }
     @Override
     public int getItemCount(){
         return mealsList.size();
     }
 
 public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public ImageView ivFavourite;
     TextView mealName,Price;
     ImageView ivMeal;
     public MyViewHolder(@NonNull View itemView) {

@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseServices fbs;
     private BottomNavigationView bottomNavigationView;
     private User userData;
-
     private Stack<Fragment> fragmentStack = new Stack<>();
     private FrameLayout fragmentContainer;
     public BottomNavigationView getBottomNavigationView() {
@@ -100,6 +99,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    private void signout() {
+        fbs.getAuth().signOut();
+        bottomNavigationView.setVisibility(View.INVISIBLE);
+        gotoLoginFragment();
+    }
     private void gotoLoginFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout, new LoginFragment());
@@ -149,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
 
                                     User user = document.toObject(User.class);
-                                    if (fbs.getAuth().getCurrentUser() != null && (fbs.getAuth().getCurrentUser().getEmail().equals(user.getUsername()))) {
+                                    if (fbs.getAuth().getCurrentUser() != null && (fbs.getAuth().getCurrentUser().getEmail().equals(user.getUserName()))) {
                                         //if (fbs.getAuth().getCurrentUser().getEmail().equals(user.getUsername())) {
                                         currentUser[0] = document.toObject(User.class);
                                         fbs.setCurrentUser(currentUser[0]);
