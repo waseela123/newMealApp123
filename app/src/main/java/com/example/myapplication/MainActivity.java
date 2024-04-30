@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private User userData;
     private Stack<Fragment> fragmentStack = new Stack<>();
     private FrameLayout fragmentContainer;
+
     public BottomNavigationView getBottomNavigationView() {
         return bottomNavigationView;
     }
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
         gotoLoginFragment();
     }
-    private void init(){
+
+    private void init() {
         fbs = FirebaseServices.getInstance();
         //fbs.getAuth().signOut();
 
@@ -49,19 +51,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
-                if (item.getItemId() == R.id.action_home)
-                {
+                if (item.getItemId() == R.id.action_home) {
                     //selectedFragment = new CarsListFragment();
                     selectedFragment = new MealListFragment();
-                }
-                else if (item.getItemId() == R.id.action_fav) {
+                } else if (item.getItemId() == R.id.action_fav) {
                     selectedFragment = new FavoriteFragment();
                     //selectedFragment = new MealListFragment(); // Favourits
-                }
-                else if (item.getItemId() == R.id.action_add) {
+                } else if (item.getItemId() == R.id.action_add) {
                     selectedFragment = new AddMealFragment();
-                }
-                else if (item.getItemId() == R.id.action_search) { // Add search bar
+                } else if (item.getItemId() == R.id.action_search) { // Add search bar
                     selectedFragment = new SearchFragment();
                 }
             /*
@@ -79,19 +77,17 @@ public class MainActivity extends AppCompatActivity {
                             .commit();
                 }
                 return true;
-            }});
+            }
+        });
         fragmentContainer = findViewById(R.id.frameLayout);
         userData = getUserData();
         //getSupportActionBar().setHomeAsUpIndicator(R.drawable.favcheck);// set drawable icon
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if (fbs.getAuth().getCurrentUser() == null)
-        {
+        if (fbs.getAuth().getCurrentUser() == null) {
             bottomNavigationView.setVisibility(View.GONE);
             gotoLoginFragment();
             pushFragment(new LoginFragment());
-        }
-        else
-        {
+        } else {
             bottomNavigationView.setVisibility(View.VISIBLE);
             //fbs.getCurrentObjectUser();
             gotoMealListFragment();
@@ -105,16 +101,19 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setVisibility(View.INVISIBLE);
         gotoLoginFragment();
     }
+
     private void gotoLoginFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout, new LoginFragment());
         ft.commit();
     }
+
     private void gotoMealListFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout, new MealListFragment());
         ft.commit();
     }
+
     public void onBackPressed() {
         if (fragmentStack.size() > 1) {
             fragmentStack.pop(); // Remove the current fragment from the stack
@@ -128,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed(); // If there's only one fragment left, exit the app
         }
     }
-    public User getUserDataObject()
-    {
+
+    public User getUserDataObject() {
         return this.userData;
     }
 
@@ -141,8 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit(); */
     }
 
-    public User getUserData()
-    {
+    public User getUserData() {
         final User[] currentUser = {null};
         try {
             fbs.getFire().collection("users")
@@ -165,9 +163,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "error reading!" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
