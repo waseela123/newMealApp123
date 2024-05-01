@@ -108,7 +108,7 @@ public class LoginFragment extends Fragment {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 if (username.trim().isEmpty() && password.trim().isEmpty()) {
-                    Toast.makeText(getActivity(), "Some fiels are empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Some Data are empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //Login procedure

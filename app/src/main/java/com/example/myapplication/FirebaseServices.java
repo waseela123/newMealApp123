@@ -70,6 +70,10 @@ public class FirebaseServices {
             }
             return  instance;
         }
+    public static FirebaseServices reloadInstance(){
+        instance=new FirebaseServices();
+        return instance;
+    }
     public boolean isUserChangeFlag() {
         return userChangeFlag;
     }
@@ -128,6 +132,10 @@ public class FirebaseServices {
         String usernameValue = user.getUserName();
         String photoFieldName = "photo";
         String photoValue = user.getPhoto();
+        String phoneFieldName = "phone";
+        String phoneValue = user.getPhoneNumber();
+        String addressFieldName = "address";
+        String addressValue = user.getAddress();
         String favoritesFieldName = "favorites";
         ArrayList<String> favoritesValue = user.getFavorites();
 
@@ -148,6 +156,8 @@ public class FirebaseServices {
                                         lastNameFieldName, lastNameValue,
                                         usernameFieldName, usernameValue,
                                         photoFieldName, photoValue,
+                                       addressFieldName, addressValue,
+                                        photoFieldName,photoValue,
                                         favoritesFieldName, favoritesValue
                                 )
                                 .addOnSuccessListener(aVoid -> {

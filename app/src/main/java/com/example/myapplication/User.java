@@ -12,7 +12,7 @@ public class User {
     private  String phoneNumber;
     private String photo;
     private ArrayList<String> favorites;
-    public User() {
+    public User(String firstname, String lastname, String phonenumber, String imageURL, String password, String address, String username) {
     }
     public User(String firstName, String lastName, String username, String phone, String address, String photo) {
         this.firstName = firstName;

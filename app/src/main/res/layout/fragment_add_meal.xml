@@ -19,6 +19,7 @@
         android:foregroundTint="#5E0600"
         android:hint="Enter Meal Name"
         android:inputType="text"
+        android:textColor="#000000"
         android:textColorLink="#5E0600"
         app:layout_constraintBottom_toTopOf="@+id/etMealPrice"
         app:layout_constraintEnd_toEndOf="parent"
