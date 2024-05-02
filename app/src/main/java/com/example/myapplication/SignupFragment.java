@@ -32,6 +32,8 @@ public class SignupFragment extends Fragment {
     ImageView ivUserPhoto;
     private FirebaseServices fbs;
     private Utils msg;
+    private static final int GALLERY_REQUEST_CODE = 123;
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -89,6 +91,7 @@ public class SignupFragment extends Fragment {
         etUsername = getView().findViewById(R.id.etUsernameSignup);
         etPassword = getView().findViewById(R.id.etPasswordSignup);
         btnSignup = getView().findViewById(R.id.btnSignupSignup);
+        btnBack = getView().findViewById(R.id.btnBackSignUp);
         etFirstName =getView().findViewById(R.id.etFirstNameSignUp);
         etLastName = getView().findViewById(R.id.etLastNameSignUp);
         etAddress = getView().findViewById(R.id.etAddressSignUp);
