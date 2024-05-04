@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -38,6 +39,7 @@ public class FirebaseServices {
     public FirebaseServices(){
         auth =  FirebaseAuth.getInstance();
         fire = FirebaseFirestore.getInstance();
+
         storage = FirebaseStorage.getInstance();
         getCurrentObjectUser(new UserCallback() {
             @Override
@@ -80,7 +82,7 @@ public class FirebaseServices {
     public void setUserChangeFlag(boolean userChangeFlag) {
         this.userChangeFlag = userChangeFlag;
     }
-    public void getCurrentObjectUser(UserCallback callback) {        ArrayList<User> usersInternal = new ArrayList<>();
+    public void getCurrentObjectUser(UserCallback callback) {  ArrayList<User> usersInternal = new ArrayList<>();
         fire.collection("users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
