@@ -28,23 +28,25 @@ public class MainActivity extends AppCompatActivity {
     private User userData;
     private Stack<Fragment> fragmentStack = new Stack<>();
     private FrameLayout fragmentContainer;
+    private ListFragmentType listType;
+
 
     public BottomNavigationView getBottomNavigationView() {
         return bottomNavigationView;
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        gotoLoginFragment();
+       init();
     }
 
     private void init() {
         fbs = FirebaseServices.getInstance();
         //fbs.getAuth().signOut();
-
+        listType = ListFragmentType.Regular;
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
@@ -52,24 +54,27 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
                 if (item.getItemId() == R.id.action_home) {
-                    //selectedFragment = new CarsListFragment();
+
                     selectedFragment = new MealListFragment();
+
                 } else if (item.getItemId() == R.id.action_fav) {
+
                     selectedFragment = new FavoriteFragment();
-                    //selectedFragment = new MealListFragment(); // Favourits
+
                 } else if (item.getItemId() == R.id.action_add) {
+
                     selectedFragment = new AddMealFragment();
+
                 } else if (item.getItemId() == R.id.action_search) { // Add search bar
-                    selectedFragment = new SearchFragment();
+
+                    selectedFragment = new MealListFragment();
+
                 }
-            /*
-            else if (item.getItemId() == R.id.action_profile) { // Add search bar
-                selectedFragment = new ProfileFragment();
-            } */
+
                 else if (item.getItemId() == R.id.action_signout) {
                     signout();
                     bottomNavigationView.setVisibility(View.GONE);
-                    //  selectedFragment=new ProfileFragment();
+
                 }
                 if (selectedFragment != null) {
                     getSupportFragmentManager().beginTransaction()
@@ -77,12 +82,11 @@ public class MainActivity extends AppCompatActivity {
                             .commit();
                 }
                 return true;
-            }
-        });
+            }});
         fragmentContainer = findViewById(R.id.frameLayout);
+
         userData = getUserData();
-        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.favcheck);// set drawable icon
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         if (fbs.getAuth().getCurrentUser() == null) {
             bottomNavigationView.setVisibility(View.GONE);
             gotoLoginFragment();
@@ -95,7 +99,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+@Override
+protected  void  onStart(){
+        super.onStart();
+        fbs = FirebaseServices.getInstance();
+        if(fbs.getAuth().getCurrentUser()==null){
+            gotoLoginFragment();
+        }
+        else {
+            gotoMealListFragment();
+        }
+}
     private void signout() {
         fbs.getAuth().signOut();
         bottomNavigationView.setVisibility(View.INVISIBLE);

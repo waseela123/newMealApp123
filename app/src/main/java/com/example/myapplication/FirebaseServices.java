@@ -41,7 +41,7 @@ public class FirebaseServices {
         fire = FirebaseFirestore.getInstance();
 
         storage = FirebaseStorage.getInstance();
-        getCurrentObjectUser(new UserCallback() {
+     /*  getCurrentObjectUser(new UserCallback() {
             @Override
 
             public void onUserLoaded(User user) {
@@ -50,9 +50,9 @@ public class FirebaseServices {
                     setCurrentUser(user);
                 }
             }
-        });
-        userChangeFlag = false;
-        selectedImageURL = null;
+       });*/
+        //userChangeFlag = false;
+        //selectedImageURL = null;
     }
         public FirebaseAuth getAuth() {
             return auth;

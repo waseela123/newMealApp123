@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "80762696456",
-    "project_id": "meal-in-menu",
-    "storage_bucket": "meal-in-menu.appspot.com"
+    "project_number": "258563270240",
+    "project_id": "myapplication-62c9b",
+    "storage_bucket": "myapplication-62c9b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:80762696456:android:0ec23a1f858650560332bd",
+        "mobilesdk_app_id": "1:258563270240:android:cbc3b756fdb62b39dcc505",
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCTFRBQVUpnW0LTcs14_BqHyccQ8pIHBGk"
+          "current_key": "AIzaSyAnbEOFhinTVegGf0zqxhWH2ii25Le1RIA"
         }
       ],
       "services": {

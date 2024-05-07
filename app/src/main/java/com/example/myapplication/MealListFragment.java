@@ -187,7 +187,7 @@ public class MealListFragment extends Fragment {
     {
         ArrayList<Meal> meals = new ArrayList<>();
 
-        try {
+        {
             meals.clear();
             fbs.getFire().collection("meals")
                     .get()
@@ -209,10 +209,7 @@ public class MealListFragment extends Fragment {
                     });
 
         }
-        catch (Exception e)
-        {
-            Log.e("getCompaniesMap(): ", e.getMessage());
-        }
+
 
         return meals;
     }
