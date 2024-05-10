@@ -143,7 +143,7 @@ public class FavoriteFragment extends Fragment {
     }
     mealAdapter = new MealAdapter(getContext(), filteredList);
         recyclerView.setAdapter(mealAdapter);
-          mealAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
+        mealAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(int position) {
 

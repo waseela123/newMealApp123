@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 public class ForgotPasswordFragment extends Fragment {
     private  FirebaseServices fbs;
     private EditText etEmail;
-    private Button btnReset;
+    private Button btnReset,btnBack;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,6 +72,15 @@ public class ForgotPasswordFragment extends Fragment {
         fbs = FirebaseServices.getInstance();
         etEmail = getView().findViewById(R.id.etEmailForgotPassword);
         btnReset = getView().findViewById(R.id.btnResetForgotPassword);
+        btnBack = getView().findViewById(R.id.btnBackForgotPassword);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                gotoLoginFragment();
+                setNavigationBarGone();
+            }
+        });
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,5 +100,18 @@ public class ForgotPasswordFragment extends Fragment {
 
             }
         });
+    }
+    public void  gotoLoginFragment()
+    {
+        FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout,new LoginFragment());
+        ft.commit();
+        setNavigationBarVisible();
+    }
+    private void setNavigationBarVisible() {
+        ((MainActivity)getActivity()).getBottomNavigationView().setVisibility(View.VISIBLE);
+    }
+    private void setNavigationBarGone() {
+        ((MainActivity)getActivity()).getBottomNavigationView().setVisibility(View.GONE);
     }
 }

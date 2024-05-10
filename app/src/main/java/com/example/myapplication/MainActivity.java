@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         //fbs.getAuth().signOut();
         listType = ListFragmentType.Regular;
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        if(fbs.getAuth().getCurrentUser()!=null) gotoMealListFragment();
+        else gotoLoginFragment();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override

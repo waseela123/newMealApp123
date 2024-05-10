@@ -81,7 +81,7 @@ public class MealListFragment extends Fragment {
     }
 
     private void init() {
-        recyclerView = getView().findViewById(R.id.rvMealListFragment);
+        recyclerView =  getView().findViewById(R.id.rvMealListFragment);
         fbs = FirebaseServices.getInstance();
         /*if (fbs.getAuth().getCurrentUser() == null)
             fbs.setCurrentUser(fbs.getCurrentObjectUser()); */
