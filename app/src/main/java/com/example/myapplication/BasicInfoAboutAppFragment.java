@@ -3,17 +3,20 @@
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-/**
+ /**
  * A simple {@link Fragment} subclass.
  * Use the {@link BasicInfoAboutAppFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class BasicInfoAboutAppFragment extends Fragment {
+    private Button btnBack;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,4 +64,30 @@ public class BasicInfoAboutAppFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_basic_info_about_app, container, false);
     }
+     public void onStart() {
+         super.onStart();
+         btnBack = getView().findViewById(R.id.btnBackInfoToLogIn);
+         btnBack.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+
+                 gotoLoginFragment();
+                 setNavigationBarGone();
+             }
+         });
+
+    }
+     public void  gotoLoginFragment()
+     {
+         FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+         ft.replace(R.id.frameLayout,new LoginFragment());
+         ft.commit();
+         setNavigationBarVisible();
+     }
+     private void setNavigationBarVisible() {
+         ((MainActivity)getActivity()).getBottomNavigationView().setVisibility(View.VISIBLE);
+     }
+     private void setNavigationBarGone() {
+         ((MainActivity)getActivity()).getBottomNavigationView().setVisibility(View.GONE);
+     }
 }

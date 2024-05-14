@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pg2"
-    android:foregroundTint="#572121">
+    android:background="@drawable/newpg">
 
     <EditText
         android:id="@+id/etUsernameSignup"
@@ -34,8 +33,8 @@
         android:layout_width="110dp"
         android:layout_height="44dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="17dp"
-        android:backgroundTint="#5E0600"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/background4"
         android:text="Signup"
         app:layout_constraintStart_toEndOf="@+id/btnBackSignUp"
         app:layout_constraintTop_toBottomOf="@+id/ivPhotoSignupFragment" />
@@ -55,8 +54,8 @@
         android:id="@+id/etFirstNameSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="88dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="84dp"
         android:ems="10"
         android:hint="First Name..."
         android:inputType="text"
@@ -87,8 +86,8 @@
 
     <ImageView
         android:id="@+id/ivPhotoSignupFragment"
-        android:layout_width="170dp"
-        android:layout_height="162dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="133dp"
         android:layout_marginBottom="133dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,9 +100,9 @@
         android:id="@+id/btnBackSignUp"
         android:layout_width="110dp"
         android:layout_height="44dp"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="17dp"
-        android:backgroundTint="#5E0600"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/background4"
         android:text="Back"
         app:icon="@drawable/backicon"
         app:layout_constraintStart_toStartOf="parent"

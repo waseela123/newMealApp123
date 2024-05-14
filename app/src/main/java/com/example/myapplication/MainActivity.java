@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         return bottomNavigationView;
     }
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +47,13 @@ public class MainActivity extends AppCompatActivity {
         //fbs.getAuth().signOut();
         listType = ListFragmentType.Regular;
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
         if(fbs.getAuth().getCurrentUser()!=null) gotoMealListFragment();
         else gotoLoginFragment();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
+
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
                 if (item.getItemId() == R.id.action_home) {
@@ -72,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new MealListFragment();
 
                 }
-
                 else if (item.getItemId() == R.id.action_signout) {
                     signout();
                     bottomNavigationView.setVisibility(View.GONE);
@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
                             .commit();
                 }
                 return true;
-            }});
+            }
+        });
         fragmentContainer = findViewById(R.id.frameLayout);
-
         userData = getUserData();
 
         if (fbs.getAuth().getCurrentUser() == null) {
@@ -101,17 +101,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-@Override
-protected  void  onStart(){
-        super.onStart();
-        fbs = FirebaseServices.getInstance();
-        if(fbs.getAuth().getCurrentUser()==null){
-            gotoLoginFragment();
-        }
-        else {
-            gotoMealListFragment();
-        }
-}
+
+//@Override
+//protected  void  onStart(){
+  //      super.onStart();
+    //    fbs = FirebaseServices.getInstance();
+      //  if(fbs.getAuth().getCurrentUser()==null){
+        //    gotoLoginFragment();
+        //}
+        //else {
+          //  gotoMealListFragment();
+       // }
+//}
     private void signout() {
         fbs.getAuth().signOut();
         bottomNavigationView.setVisibility(View.INVISIBLE);

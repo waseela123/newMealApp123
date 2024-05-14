@@ -101,7 +101,7 @@ public class FavoriteFragment extends Fragment {
                 ft.commit();
             }
         });
-        searchView = getView().findViewById(R.id.srchViewOrderFragment);
+        searchView = getView().findViewById(R.id.srchViewFavoriteFragment);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
