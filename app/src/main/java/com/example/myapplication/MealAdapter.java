@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,6 +25,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
     ArrayList<Meal> mealsList;
     private FirebaseServices fbs;
     private MealAdapter.OnItemClickListener itemClickListener;
+
 
     public MealAdapter( Context context, ArrayList<Meal> mealsList) {
         this.context = context;
@@ -76,8 +78,11 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
             Picasso.get().load(meal.getPicture()).into(holder.ivMeal);
         }
         holder.ivFavourite.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                Toast.makeText(context, "Clicked favorite", Toast.LENGTH_SHORT).show();
+
                 if (isFavorite(meal) == true) {
                     removeStar(meal, holder);
                 } else {
@@ -136,18 +141,18 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         return mealsList.size();
     }
 
-public static class MyViewHolder extends RecyclerView.ViewHolder{
-    public ImageView ivFavourite;
-    TextView mealName,Price;
-    ImageView ivMeal;
-    public MyViewHolder(@NonNull View itemView) {
-        super(itemView);
-        mealName=itemView.findViewById(R.id.tvMealName);
-        Price=itemView.findViewById(R.id.tvMealPrice);
-        ivMeal = itemView.findViewById(R.id.ivMealimage);
-
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+        public ImageView ivFavourite;
+        TextView mealName, Price;
+        ImageView ivMeal;
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mealName = itemView.findViewById(R.id.tvMealName);
+            Price = itemView.findViewById(R.id.tvMealPrice);
+            ivMeal = itemView.findViewById(R.id.ivMealimage);
+            ivFavourite = itemView.findViewById(R.id.ivFavouiteIcon); // Initialize ivFavourite here
+        }
     }
-}
 public interface OnItemClickListener {
     void onItemClick(int position);
 

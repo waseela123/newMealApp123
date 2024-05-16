@@ -24,7 +24,7 @@ public class LoginFragment extends Fragment {
     private Button btnLogin;
     private Button btnAddLinkAddMeal;
     private FirebaseServices fbs;
-    private Button btnForgotPasswordLink;
+    private Button btnForgotPasswordLink, btnAppInfoLink;
     private ImageView logo;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -79,6 +79,7 @@ public class LoginFragment extends Fragment {
         // connecting components
        // logo = logo.findViewById(R.id.ivLogoLogin);
         fbs = FirebaseServices.getInstance();
+        btnAppInfoLink = getView().findViewById(R.id.btnGoToInfo);
         etUsername = getView().findViewById(R.id.etUsernameLogin);
         etPassword = getView().findViewById(R.id.etPasswordLogin);
         btnLogin = getView().findViewById(R.id.btnLoginLogin);
@@ -102,6 +103,11 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 gotoForgotPasswordFragment();
             }
+        });
+        btnAppInfoLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {gotoAppInfoFragment();}
+
         });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +161,12 @@ public class LoginFragment extends Fragment {
         ft.replace(R.id.frameLayout, new MealListFragment());
         ft.commit();
     }
+    private void gotoAppInfoFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout, new BasicInfoAboutAppFragment());
+        ft.commit();
+    }
+
 }
 
 

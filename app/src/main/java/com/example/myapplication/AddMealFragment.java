@@ -4,9 +4,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import  com.example.myapplication.CropperActivity;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -31,7 +36,13 @@ import java.util.UUID;
  */
 public class AddMealFragment extends Fragment {
     private static final int GALLERY_REQUEST_CODE = 123;
+
+    private static final int UCROP_REQUEST_CODE = 123;
+
     ImageView img;
+
+    Uri resultUri;
+    ActivityResultLauncher<String> mGetContent;
     private String strPicture;
     private FirebaseServices fbs;
     private Button btnAdd;
@@ -47,6 +58,8 @@ public class AddMealFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
 
     public AddMealFragment() {
         // Required empty public constructor
@@ -82,43 +95,56 @@ public class AddMealFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_meal, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_meal, container, false);
+        init(view);
+        return view;
     }
-    @Override
+
+   /* @Override
     public void onStart() {
         super.onStart();
         init();
-    }
-    private void init() {
+    }*/
+
+    private void init(View view) {
         fbs = FirebaseServices.getInstance();
         utils = Utils.getInstance();
-        etName = getView().findViewById(R.id.etMealName);
-        btnAdd = getView().findViewById(R.id.btnAddMealFragment);
-        img = getView().findViewById(R.id.ivAddMealFragment);
-        etIngredients = getView().findViewById(R.id.etMealIngredients);
-        etPrice = getView().findViewById(R.id.etMealPrice);
-
+        etName = view.findViewById(R.id.etMealName);
+        btnAdd = view.findViewById(R.id.btnAddMealFragment);
+        img = view.findViewById(R.id.ivAddMealFragment);
+        etIngredients = view.findViewById(R.id.etMealIngredients);
+        etPrice = view.findViewById(R.id.etMealPrice);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // adding to firestore  'meal' collection
-
+            public void onClick(View v) {
                 addToFirestore();
             }
         });
+
+
+        mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri result) {
+                if (result != null) {
+                    Intent intent = new Intent(getContext(), CropperActivity.class);
+                    intent.putExtra("DATA", result.toString());
+                    startActivityForResult(intent, 101);
+                } else {
+
+                    Toast.makeText(getContext(), "No image selected", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGallery();
             }
-
-
         });
-        //((MainActivity) getActivity()).pushFragment(new AddMealFragment());
-
-}
+    }
 
     private void addToFirestore() {
         String mealname, price, ingredients;
@@ -163,21 +189,27 @@ public class AddMealFragment extends Fragment {
 
 
     private void openGallery() {
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
-        }
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+    }
 
-        @Override
-        public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
 
-            if (requestCode == GALLERY_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
-                Uri selectedImageUri = data.getData();
-                img.setImageURI(selectedImageUri);
-                utils.uploadImage(getActivity(), selectedImageUri);
-            }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            img.setImageURI(selectedImageUri);
+            utils.uploadImage(getActivity(), selectedImageUri);
         }
     }
+
+
+    }
+
+
+
 
 
 

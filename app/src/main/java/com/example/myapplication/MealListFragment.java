@@ -196,6 +196,7 @@ public class MealListFragment extends Fragment {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // check in favorites array for user if the current post id is there
                                     meals.add(document.toObject(Meal.class));
                                 }
 

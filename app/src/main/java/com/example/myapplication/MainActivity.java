@@ -1,11 +1,13 @@
 package com.example.myapplication;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Stack<Fragment> fragmentStack = new Stack<>();
     private FrameLayout fragmentContainer;
     private ListFragmentType listType;
-
+    private ProgressDialog progressDialog;
 
     public BottomNavigationView getBottomNavigationView() {
         return bottomNavigationView;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       init();
+        init();
     }
 
     private void init() {
@@ -48,12 +50,15 @@ public class MainActivity extends AppCompatActivity {
         listType = ListFragmentType.Regular;
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        if(fbs.getAuth().getCurrentUser()!=null) gotoMealListFragment();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Logging in...");
+        progressDialog.setCancelable(false);
+
+        if (fbs.getAuth().getCurrentUser() != null) gotoMealListFragment();
         else gotoLoginFragment();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
-
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
                 if (item.getItemId() == R.id.action_home) {
@@ -72,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
                     selectedFragment = new MealListFragment();
 
-                }
-                else if (item.getItemId() == R.id.action_signout) {
+                } else if (item.getItemId() == R.id.action_signout) {
                     signout();
                     bottomNavigationView.setVisibility(View.GONE);
 
@@ -102,17 +106,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//@Override
-//protected  void  onStart(){
-  //      super.onStart();
-    //    fbs = FirebaseServices.getInstance();
-      //  if(fbs.getAuth().getCurrentUser()==null){
-        //    gotoLoginFragment();
-        //}
-        //else {
-          //  gotoMealListFragment();
-       // }
-//}
     private void signout() {
         fbs.getAuth().signOut();
         bottomNavigationView.setVisibility(View.INVISIBLE);
@@ -127,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void gotoMealListFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        bottomNavigationView.setVisibility(View.VISIBLE);
         ft.replace(R.id.frameLayout, new MealListFragment());
         ft.commit();
     }
@@ -151,26 +145,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void pushFragment(Fragment fragment) {
         fragmentStack.push(fragment);
-        /*
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayout, fragment)
-                .commit(); */
     }
 
     public User getUserData() {
         final User[] currentUser = {null};
         try {
+            progressDialog.show();
             fbs.getFire().collection("users")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            progressDialog.dismiss();
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-
                                     User user = document.toObject(User.class);
                                     if (fbs.getAuth().getCurrentUser() != null && (fbs.getAuth().getCurrentUser().getEmail().equals(user.getUserName()))) {
-                                        //if (fbs.getAuth().getCurrentUser().getEmail().equals(user.getUsername())) {
                                         currentUser[0] = document.toObject(User.class);
                                         fbs.setCurrentUser(currentUser[0]);
                                     }
@@ -181,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
         } catch (Exception e) {
+            progressDialog.dismiss();
             Toast.makeText(getApplicationContext(), "error reading!" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 

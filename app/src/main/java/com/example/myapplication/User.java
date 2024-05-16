@@ -12,6 +12,10 @@ public class User {
     private  String phoneNumber;
     private String photo;
     private ArrayList<String> favorites;
+    // Public no-argument constructor
+    public User() {
+        // Default constructor
+    }
     public User(String firstname, String lastname, String phonenumber, String imageURL, String password, String address, String username) {
     }
     public User(String firstName, String lastName, String username, String phone, String address, String photo) {

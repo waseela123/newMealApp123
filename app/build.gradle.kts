@@ -30,6 +30,7 @@ android {
 }
 
 dependencies {
+    implementation("com.github.krokyze:ucropnedit:2.2.8")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics")
