@@ -93,12 +93,9 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
             }
         });
 
-        this.itemClickListener = new OnItemClickListener() {
+        holder.ivMeal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(int position) {
-                   /*
-                String selectedItem = filteredList.get(position).getNameCar();
-                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show(); */
+            public void onClick(View v) {
                 Bundle args = new Bundle();
                 args.putParcelable("meal", mealsList.get(position)); // or use Parcelable for better performance
                 MealDetailsFragment cd = new MealDetailsFragment();
@@ -107,7 +104,25 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
                 ft.replace(R.id.frameLayout,cd);
                 ft.commit();
             }
-        };
+        });
+
+        /*
+        this.itemClickListener = new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+                String selectedItem = filteredList.get(position).getNameCar();
+                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+
+                Bundle args = new Bundle();
+                args.putParcelable("meal", mealsList.get(position)); // or use Parcelable for better performance
+                MealDetailsFragment cd = new MealDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft= ((MainActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout,cd);
+                ft.commit();
+            }
+        }; */
     }
     private void removeStar(Meal meal, MealAdapter.MyViewHolder holder) {
         User u = fbs.getCurrentUser();
