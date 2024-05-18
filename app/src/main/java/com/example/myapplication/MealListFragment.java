@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -31,10 +32,13 @@ import java.util.ArrayList;
 public class MealListFragment extends Fragment {
     private RecyclerView recyclerView;
     private FirebaseServices fbs;
+    private ImageView ivProfile,favimj;
+
     private MealAdapter myAdapter;
     private SearchView srchView;
-    private ArrayList<Meal> meals,filteredList;;
-
+    private ArrayList<Meal> meals,filteredList;
+    private ArrayList<Meal> rests;
+    private RecyclerView rvRests;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,6 +95,13 @@ public class MealListFragment extends Fragment {
         meals = getMeals();
         myAdapter = new MealAdapter(getActivity(), meals);
         filteredList = new ArrayList<>();
+        recyclerView.setAdapter(myAdapter);
+        rests = new ArrayList<>();
+        rvRests = getView().findViewById(R.id.rvMealListFragment);
+        rvRests.setHasFixedSize(true);
+        rvRests.setLayoutManager(new LinearLayoutManager(getActivity()));
+        favimj = getView().findViewById(R.id.ivFavouiteIcon);
+
         myAdapter.setOnItemClickListener(new MealAdapter.OnItemClickListener() {
 
             @Override
@@ -100,7 +111,7 @@ public class MealListFragment extends Fragment {
                 Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
                 args.putParcelable("meal", meals.get(position)); // or use Parcelable for better performance
-               MealDetailsFragment cd = new MealDetailsFragment();
+                MealDetailsFragment cd = new MealDetailsFragment();
                 cd.setArguments(args);
                 FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frameLayout,cd);
@@ -123,6 +134,7 @@ public class MealListFragment extends Fragment {
         });
         //((MainActivity)getActivity()).pushFragment(new MealListFragment());
     }
+
     private void applyFilter(String query) {
         // TODO: add onBackspace - old and new query
         if (query.trim().isEmpty())

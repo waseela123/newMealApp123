@@ -15,9 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="39dp"
-        android:drawableTint="#5E0600"
         android:ems="10"
-        android:foregroundTint="#5E0600"
         android:hint="Enter Meal Name"
         android:inputType="text"
         android:textColor="#000000"
@@ -33,6 +31,7 @@
         android:ems="10"
         android:hint="Enter Meal Price"
         android:inputType="text"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/etMealIngredients"
         app:layout_constraintStart_toStartOf="@+id/etMealName"
         app:layout_constraintTop_toBottomOf="@+id/etMealName" />
@@ -45,6 +44,7 @@
         android:ems="10"
         android:hint="Enter Meal Ingredients"
         android:inputType="text"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/ivAddMealFragment"
         app:layout_constraintStart_toStartOf="@+id/etMealPrice"
         app:layout_constraintTop_toBottomOf="@+id/etMealPrice" />
