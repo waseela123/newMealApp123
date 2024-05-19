@@ -2,9 +2,12 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ public class MealDetailsFragment extends Fragment {
     private ImageView ivMealPic;
     private Meal myMeal;
     private FirebaseServices fbs;
+    private Button btnBack;
     private boolean isEnlarged = false; //משתנה כדי לעקוב אחרי המצב הנוכחי של התמונה (האם היא מגודלת או לא)
 
 
@@ -106,6 +110,13 @@ public class MealDetailsFragment extends Fragment {
             tvPrice = getView().findViewById(R.id.tvPriceDetails);
             tvIngredients= getView().findViewById(R.id.tvIngredientsDetails);
             ivMealPic = getView().findViewById(R.id.ivMealPicDetails);
+            btnBack = getView().findViewById(R.id.btnbackDetails );
+            btnBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gotoMealListFragment();
+                }
+            });
 
             Bundle args = getArguments();
             if (args != null){
@@ -123,4 +134,11 @@ public class MealDetailsFragment extends Fragment {
              }
             }
         }
+    public void  gotoMealListFragment()
+    {
+        FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout,new MealListFragment());
+        ft.commit();
     }
+    }
+

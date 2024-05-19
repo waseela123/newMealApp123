@@ -10,32 +10,44 @@
         android:id="@+id/etUsernameSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="username(Email)..."
         android:inputType="textEmailAddress"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/etPasswordSignup"
-        app:layout_constraintStart_toStartOf="@+id/etAddressSignUp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etAddressSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/etAddressSignUp" />
 
     <EditText
         android:id="@+id/etPasswordSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="18dp"
         android:ems="10"
         android:hint="password..."
         android:inputType="textPassword"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/ivPhotoSignupFragment"
-        app:layout_constraintStart_toStartOf="@+id/etUsernameSignup" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etUsernameSignup"
+        app:layout_constraintTop_toBottomOf="@+id/etUsernameSignup" />
 
     <Button
         android:id="@+id/btnSignupSignup"
         android:layout_width="110dp"
-        android:layout_height="44dp"
+        android:layout_height="45dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="44dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="43dp"
         android:backgroundTint="@color/background4"
         android:text="Signup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnBackSignUp"
         app:layout_constraintTop_toBottomOf="@+id/ivPhotoSignupFragment" />
 
@@ -43,10 +55,14 @@
         android:id="@+id/etPhoneNumberSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="phone number..."
         android:inputType="text"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/etAddressSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/etLastNameSignUp"
         app:layout_constraintTop_toBottomOf="@+id/etLastNameSignUp" />
 
@@ -54,22 +70,32 @@
         android:id="@+id/etFirstNameSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="1dp"
         android:ems="10"
         android:hint="First Name..."
         android:inputType="text"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/etLastNameSignUp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etLastNameSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="Last Name..."
         android:inputType="text"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/etPhoneNumberSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/etFirstNameSignUp"
         app:layout_constraintTop_toBottomOf="@+id/etFirstNameSignUp" />
 
@@ -77,10 +103,14 @@
         android:id="@+id/etAddressSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="18dp"
         android:ems="10"
         android:hint="Address..."
         android:inputType="text"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/etUsernameSignup"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/etPhoneNumberSignUp"
         app:layout_constraintTop_toBottomOf="@+id/etPhoneNumberSignUp" />
 
@@ -88,12 +118,13 @@
         android:id="@+id/ivPhotoSignupFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="133dp"
-        android:layout_marginBottom="133dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnBackSignUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddressSignUp"
+        app:layout_constraintStart_toStartOf="@+id/etPasswordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordSignup"
         app:srcCompat="@drawable/photoadd" />
 
     <Button
@@ -101,10 +132,13 @@
         android:layout_width="110dp"
         android:layout_height="44dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="43dp"
         android:backgroundTint="@color/background4"
         android:text="Back"
         app:icon="@drawable/backicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSignupSignup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivPhotoSignupFragment" />
 

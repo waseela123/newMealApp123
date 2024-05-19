@@ -85,13 +85,13 @@ public class LoginFragment extends Fragment {
         btnLogin = getView().findViewById(R.id.btnLoginLogin);
         tvSignupLink = getView().findViewById(R.id.btnSignupLinkLogin);
         btnForgotPasswordLink = getView().findViewById(R.id.btnForgotPasswordLinkLogin);
-        btnAddLinkAddMeal = getView().findViewById(R.id.btnAddLinkAddMealFragment);
-        btnAddLinkAddMeal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoAddMealFragment();
-            }
-        });
+        //btnAddLinkAddMeal = getView().findViewById(R.id.btnAddLinkAddMealFragment);
+    //    btnAddLinkAddMeal.setOnClickListener(new View.OnClickListener() {
+       //     @Override
+        //    public void onClick(View v) {
+        //        gotoAddMealFragment();
+        //    }
+       // });
         tvSignupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

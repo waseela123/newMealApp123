@@ -10,12 +10,13 @@
         android:id="@+id/etUsernameLogin"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="35dp"
         android:ems="10"
         android:hint="username.."
         android:inputType="textEmailAddress"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/etPasswordLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,13 +26,14 @@
         android:id="@+id/etPasswordLogin"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="373dp"
         android:ems="10"
         android:hint="password..."
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/ivLogoLogin"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUsernameLogin" />
@@ -62,31 +64,33 @@
         android:id="@+id/btnForgotPasswordLinkLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="86dp"
         android:backgroundTint="@color/background4"
         android:text="Forgot Password"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddLinkAddMealFragment"
-        app:layout_constraintStart_toStartOf="@+id/btnAddLinkAddMealFragment" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
+        android:layout_marginTop="29dp"
         android:layout_marginBottom="1dp"
         android:text="Hello!!"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="46dp"
         android:text="Welcome to my restaurant. "
         android:textAllCaps="false"
         android:textColor="@color/black"
@@ -94,27 +98,15 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnAddLinkAddMealFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="127dp"
-        android:layout_marginEnd="9dp"
-        android:backgroundTint="@color/background4"
-        android:text="GO TO ADD MEAL"
-        app:layout_constraintEnd_toStartOf="@+id/ivLogoLogin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivLogoLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="34dp"
         android:text="Meal in Menu 🍜"
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -125,18 +117,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <ImageView
-        android:id="@+id/ivLogoLogin"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnAddLinkAddMealFragment"
-        app:layout_constraintTop_toBottomOf="@+id/etPasswordLogin"
-        app:srcCompat="@drawable/logo" />
 
     <Button
         android:id="@+id/btnGoToInfo"
