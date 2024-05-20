@@ -158,12 +158,13 @@ public class SignupFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "failed to sign up! check user or password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "failed to sign up! check user or password or data", Toast.LENGTH_SHORT).show();
 
                         }
 
                     }
                         });
+
 
             }
         });
