@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,13 +11,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.myapplication.DataBase.FirebaseServices;
+import com.example.myapplication.Activity.MainActivity;
+import com.example.myapplication.R;
+import com.example.myapplication.DataBase.User;
+import com.example.myapplication.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
 
 import androidx.annotation.NonNull;
@@ -15,6 +15,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.myapplication.DataBase.FirebaseServices;
+import com.example.myapplication.Fragments.AddMealFragment;
+import com.example.myapplication.Fragments.FavoriteFragment;
+import com.example.myapplication.Fragments.LoginFragment;
+import com.example.myapplication.Fragments.MealListFragment;
+import com.example.myapplication.Fragments.ListFragmentType;
+import com.example.myapplication.R;
+import com.example.myapplication.DataBase.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

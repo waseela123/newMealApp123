@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.DataBase.FirebaseServices;
+import com.example.myapplication.DataBase.Meal;
+import com.example.myapplication.R;
 import com.squareup.picasso.Picasso;
 
 /**

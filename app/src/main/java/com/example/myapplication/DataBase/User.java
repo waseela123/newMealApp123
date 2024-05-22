@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.DataBase;
 
 import android.os.Parcel;
 

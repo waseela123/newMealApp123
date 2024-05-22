@@ -1,10 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.DataBase;
 
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.myapplication.UserCallback;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,12 +28,10 @@ public class FirebaseServices {
     private Meal selectedMeal;
     private boolean userChangeFlag;
 
-    public Meal getSelectedMeal() {
-        return selectedMeal;
-    }
-    public void setSelectedMeal(Meal selectedMeal) {
-        this.selectedMeal = selectedMeal;
-    }
+    public Meal getSelectedMeal()
+    {return selectedMeal;}
+    public void setSelectedMeal(Meal selectedMeal)
+    {this.selectedMeal = selectedMeal;}
 
 
     public FirebaseServices(){
@@ -57,15 +55,12 @@ public class FirebaseServices {
         public FirebaseAuth getAuth() {
             return auth;
         }
-
         public FirebaseFirestore getFire() {
             return fire;
         }
-
         public FirebaseStorage getStorage() {
             return storage;
         }
-
         public static FirebaseServices getInstance(){
             if (instance == null){
                 instance = new FirebaseServices();
@@ -79,9 +74,8 @@ public class FirebaseServices {
     public boolean isUserChangeFlag() {
         return userChangeFlag;
     }
-    public void setUserChangeFlag(boolean userChangeFlag) {
-        this.userChangeFlag = userChangeFlag;
-    }
+    public void setUserChangeFlag(boolean userChangeFlag)
+    {this.userChangeFlag = userChangeFlag;}
     public void getCurrentObjectUser(UserCallback callback) {  ArrayList<User> usersInternal = new ArrayList<>();
         fire.collection("users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -110,11 +104,8 @@ public class FirebaseServices {
     {
         return this.currentUser;
     }
-
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
-
+    public void setCurrentUser(User currentUser)
+    {this.currentUser = currentUser;}
     public Uri getSelectedImageURL() {
         return selectedImageURL;
     }

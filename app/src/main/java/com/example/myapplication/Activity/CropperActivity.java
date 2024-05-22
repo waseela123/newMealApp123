@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.myapplication.R;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;

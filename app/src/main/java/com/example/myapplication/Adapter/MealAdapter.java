@@ -1,6 +1,4 @@
-package com.example.myapplication;
-
-import static com.google.android.material.internal.ContextUtils.getActivity;
+package com.example.myapplication.Adapter;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,8 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Activity.MainActivity;
+import com.example.myapplication.DataBase.FirebaseServices;
+import com.example.myapplication.DataBase.Meal;
+import com.example.myapplication.DataBase.User;
+import com.example.myapplication.Fragments.MealDetailsFragment;
+import com.example.myapplication.R;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 
