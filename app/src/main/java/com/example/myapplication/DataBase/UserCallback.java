@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.DataBase;
 
 import com.example.myapplication.DataBase.User;
 

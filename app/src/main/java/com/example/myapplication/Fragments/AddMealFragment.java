@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.example.myapplication.DataBase.FirebaseServices;
 import com.example.myapplication.DataBase.Meal;
 import com.example.myapplication.R;
-import com.example.myapplication.Utils;
+import com.example.myapplication.DataBase.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;

@@ -23,6 +23,7 @@ public class User {
         this.lastName = lastName;
         this.userName = username;
         this.photo = photo;
+        this.photo = photo;
         this.favorites = new ArrayList<>();
     }
 

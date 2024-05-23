@@ -21,7 +21,7 @@ import com.example.myapplication.DataBase.FirebaseServices;
 import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.DataBase.User;
-import com.example.myapplication.Utils;
+import com.example.myapplication.DataBase.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

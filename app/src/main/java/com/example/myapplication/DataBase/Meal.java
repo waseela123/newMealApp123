@@ -12,6 +12,7 @@ public class Meal implements Parcelable {
     private String ingredients;
     private String picture;
 
+
     public Meal(String id, String name, Double price, String ingredients, String picture) {
         this.id = id;
         this.name = name;
