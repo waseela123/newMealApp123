@@ -207,12 +207,4 @@ public class AddMealFragment extends Fragment {
             utils.uploadImage(getActivity(), selectedImageUri);
         }
     }
-
-
-    }
-
-
-
-
-
-
+}

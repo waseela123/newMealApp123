@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -68,6 +69,22 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
+
+                // Get the menu from the navigation view.
+                Menu menu = navigationView.getMenu();
+
+                // Get the admin navigation item.
+                MenuItem adminItem = menu.findItem(R.id.action_add);
+
+                // Check if the user is an admin.
+                if (!isAdmin()) {
+                    // Hide the admin navigation item.
+                    adminItem.setVisible(false);
+                }
+                else {
+                    adminItem.setVisible(true);
+                }
                 Fragment selectedFragment = null;
                 if (item.getItemId() == R.id.action_home) {
 
@@ -113,7 +130,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+    private boolean isAdmin() {
+        // Replace this with your own logic for checking if the user is an admin.
+        // For example, you could check a list of known admin email addresses.
+        String userEmail = fbs.getAuth().getCurrentUser().getEmail();
+        return userEmail.equals("abbas.waseela2006@gmail.com");
+    }
     private void signout() {
         fbs.getAuth().signOut();
         bottomNavigationView.setVisibility(View.INVISIBLE);

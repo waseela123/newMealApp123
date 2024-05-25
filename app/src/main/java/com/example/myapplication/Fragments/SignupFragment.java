@@ -37,7 +37,7 @@ public class SignupFragment extends Fragment {
     private FirebaseServices fbs;
     private Utils msg;
     private static final int GALLERY_REQUEST_CODE = 123;
-
+    private Utils utils;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -101,6 +101,7 @@ public class SignupFragment extends Fragment {
         etAddress = getView().findViewById(R.id.etAddressSignUp);
         etPhoneNumber = getView().findViewById(R.id.etPhoneNumberSignUp);
         msg = Utils.getInstance();
+        utils = Utils.getInstance();
         ivUserPhoto = getView().findViewById(R.id.ivPhotoSignupFragment);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -206,7 +207,7 @@ public class SignupFragment extends Fragment {
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
             Uri selectedImageUri = data.getData();
             ivUserPhoto.setImageURI(selectedImageUri);
-            Utils.getInstance().uploadImage(getActivity(), selectedImageUri);
+            utils.uploadImage(getActivity(), selectedImageUri);
         }
     }
 }

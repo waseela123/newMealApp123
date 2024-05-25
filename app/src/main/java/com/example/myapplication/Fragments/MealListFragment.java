@@ -33,7 +33,7 @@ import java.util.ArrayList;
  * Use the {@link MealListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MealListFragment extends Fragment {
+public class  MealListFragment extends Fragment {
     private RecyclerView recyclerView;
     private FirebaseServices fbs;
     private ImageView ivProfile,favimj;
@@ -83,6 +83,7 @@ public class MealListFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     public void onStart() {
         super.onStart();
         init();
@@ -230,7 +231,5 @@ public class MealListFragment extends Fragment {
 
         return meals;
     }
-
-
 
 }
