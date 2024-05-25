@@ -114,18 +114,7 @@
         app:layout_constraintStart_toStartOf="@+id/etPhoneNumberSignUp"
         app:layout_constraintTop_toBottomOf="@+id/etPhoneNumberSignUp" />
 
-    <ImageView
-        android:id="@+id/ivPhotoSignupFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnBackSignUp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/etPasswordSignup"
-        app:layout_constraintTop_toBottomOf="@+id/etPasswordSignup"
-        app:srcCompat="@drawable/photoadd" />
+
 
     <Button
         android:id="@+id/btnBackSignUp"
@@ -141,5 +130,21 @@
         app:layout_constraintEnd_toStartOf="@+id/btnSignupSignup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivPhotoSignupFragment" />
+    <ImageView
+        android:id="@+id/ivPhotoSignupFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="111dp"
+        android:layout_marginBottom="43dp"
+        android:maxWidth="150dp"
+        android:maxHeight="150dp"
+        android:src="@drawable/photoadd"
+        app:layout_constraintBottom_toTopOf="@+id/btnBackSignUp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etPasswordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordSignup" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,19 +11,22 @@ public class User {
     private String Address;
     private  String phoneNumber;
     private String photo;
+    private  String password;
     private ArrayList<String> favorites;
     // Public no-argument constructor
     public User() {
         // Default constructor
     }
-    public User(String firstname, String lastname, String phonenumber, String imageURL, String password, String address, String username) {
-    }
-    public User(String firstName, String lastName, String username, String phone, String address, String photo) {
+   // public User(String firstname, String lastname, String phonenumber, String imageURL, String password, String address, String username) {
+
+   // }
+    public User(String firstName, String lastName, String userName, String phoneNumber, String Address,String imageURL,String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = username;
-        this.photo = photo;
-        this.photo = photo;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+        this.Address = Address;
+        this.password = password;
         this.favorites = new ArrayList<>();
     }
 

@@ -138,7 +138,8 @@ public class SignupFragment extends Fragment {
                 if (selectedImageUri != null) {
                     imageURL = selectedImageUri.toString();
                 }
-                User user = new User(firstname, lastname,  phonenumber,  imageURL,password,address,username);
+                User user = new User(firstname, lastname,username,  phonenumber,address ,imageURL,password);
+                //     public User(String firstName, String lastName, String userName, String phoneNumber, String Address, String photo,String imageURL,String password) {
                 fbs.getAuth().createUserWithEmailAndPassword(username, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
