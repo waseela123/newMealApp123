@@ -36,9 +36,9 @@ public class FirebaseServices {
     public FirebaseServices(){
         auth =  FirebaseAuth.getInstance();
         fire = FirebaseFirestore.getInstance();
-
         storage = FirebaseStorage.getInstance();
-     /*  getCurrentObjectUser(new UserCallback() {
+        //Favorite Add
+      getCurrentObjectUser(new UserCallback() {
             @Override
 
             public void onUserLoaded(User user) {
@@ -47,9 +47,9 @@ public class FirebaseServices {
                     setCurrentUser(user);
                 }
             }
-       });*/
-        //userChangeFlag = false;
-        //selectedImageURL = null;
+       });
+        userChangeFlag = false;
+        selectedImageURL = null;
     }
         public FirebaseAuth getAuth() {
             return auth;
@@ -73,8 +73,7 @@ public class FirebaseServices {
     public boolean isUserChangeFlag() {
         return userChangeFlag;
     }
-    public void setUserChangeFlag(boolean userChangeFlag)
-    {this.userChangeFlag = userChangeFlag;}
+    public void setUserChangeFlag(boolean userChangeFlag) {this.userChangeFlag = userChangeFlag;}
     public void getCurrentObjectUser(UserCallback callback) {  ArrayList<User> usersInternal = new ArrayList<>();
         fire.collection("users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override

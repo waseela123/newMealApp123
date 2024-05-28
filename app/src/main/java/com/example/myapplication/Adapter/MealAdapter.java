@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> {
     Context context;
     ArrayList<Meal> mealsList;
+
     private FirebaseServices fbs;
     private MealAdapter.OnItemClickListener itemClickListener;
 
@@ -59,7 +60,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         User u = fbs.getCurrentUser();
         if (u != null) {
             if (u.getFavorites().contains(meal.getId()))
-                Picasso.get().load(R.drawable.favcheck).into(holder.ivFavourite);
+                Picasso.get().load(R.drawable.fullstar).into(holder.ivFavourite);
             else
                 Picasso.get().load(R.drawable.ic_fav).into(holder.ivFavourite);
         }
@@ -77,6 +78,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
             }
         }); */
         if (meal.getPicture() == null || meal.getPicture().isEmpty()) {
+            Picasso.get().load(R.drawable.ic_fav).into(holder.ivMeal);
         } else {
             Picasso.get().load(meal.getPicture()).into(holder.ivMeal);
         }
@@ -92,7 +94,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
                     addStar(meal, holder);
                 }
                 fbs.setUserChangeFlag(true);
-                //setFavourite(holder, car);
+                //setFavourite(holder, meal);
             }
         });
 
@@ -142,7 +144,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         if (u != null) {
             u.getFavorites().add(meal.getId());
             holder.ivFavourite.setImageResource(android.R.color.transparent);
-            Picasso.get().load(R.drawable.favcheck).into(holder.ivFavourite);
+            Picasso.get().load(R.drawable.fullstar).into(holder.ivFavourite);
         }
     }
     private boolean isFavorite(Meal meal) {

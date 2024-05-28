@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.myapplication.DataBase.FirebaseServices;
 import com.example.myapplication.DataBase.Meal;
 import com.example.myapplication.Adapter.MealAdapter;
+import com.example.myapplication.DataBase.User;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -231,5 +232,13 @@ public class  MealListFragment extends Fragment {
 
         return meals;
     }
+    //Favorite Add
+    @Override
+    public void onPause() {
+        super.onPause();
+        User u = fbs.getCurrentUser();
+        if (u != null && fbs.isUserChangeFlag())
+            fbs.updateUser(u); // updating favorites
 
+    }
 }
