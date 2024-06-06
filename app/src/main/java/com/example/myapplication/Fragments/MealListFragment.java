@@ -23,7 +23,10 @@ import com.example.myapplication.Adapter.MealAdapter;
 import com.example.myapplication.DataBase.User;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -38,7 +41,7 @@ public class  MealListFragment extends Fragment {
     private RecyclerView recyclerView;
     private FirebaseServices fbs;
     private ImageView ivProfile,favimj;
-
+    private MealAdapter adapter;
     private MealAdapter myAdapter;
     private SearchView srchView;
     private ArrayList<Meal> meals,filteredList;
@@ -124,6 +127,28 @@ public class  MealListFragment extends Fragment {
                 ft.commit();
             }
         });
+        fbs.getFire().collection("hotels").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
+                   Meal rest = dataSnapshot.toObject(Meal.class);
+
+                    rests.add(rest);
+                }
+
+                adapter = new MealAdapter(getContext(), rests);
+                rvRests.setAdapter(adapter);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
+                Log.e("AllHotelsFragment", e.getMessage());
+
+            }
+        });
+
         srchView = getView().findViewById(R.id.srchViewMealListFragment);
         srchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.DataBase.FirebaseServices;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -160,6 +161,7 @@ public class LoginFragment extends Fragment {
     }
     private void gotoMealListFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ((MainActivity)getActivity()).getBottomNavigationView().setVisibility(View.VISIBLE);
         ft.replace(R.id.frameLayout, new MealListFragment());
         ft.commit();
     }

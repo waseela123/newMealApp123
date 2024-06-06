@@ -1,5 +1,6 @@
 package com.example.myapplication.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,11 +25,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> {
-    Context context;
-    ArrayList<Meal> mealsList;
-
+    private Context context;
+    private ArrayList<Meal> mealsList;
     private FirebaseServices fbs;
-    private MealAdapter.OnItemClickListener itemClickListener;
+    private OnItemClickListener itemClickListener;
 
 
     public MealAdapter( Context context, ArrayList<Meal> mealsList) {
@@ -55,7 +55,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         return  new MealAdapter.MyViewHolder(v);
     }
     @Override
-    public void onBindViewHolder(@NonNull MealAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MealAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Meal meal = mealsList.get(position);
         User u = fbs.getCurrentUser();
         if (u != null) {

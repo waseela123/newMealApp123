@@ -85,7 +85,7 @@ public class FavoriteFragment extends Fragment {
         init();
     }
     private void init() {
-        recyclerView = getView().findViewById(R.id.rvMealListFragment);
+        recyclerView = getView().findViewById(R.id.rvMeallistFav);
         fbs = FirebaseServices.getInstance();
         meals = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
@@ -131,7 +131,7 @@ public class FavoriteFragment extends Fragment {
         return;
     }
         filteredList.clear();
-        for(Meal meal :  meals)
+        for(Meal meal :  filteredList)
     {
         if (meal.getIngredients().toLowerCase().contains(query.toLowerCase()) ||
                 meal.getPicture().toLowerCase().contains(query.toLowerCase()) ||
@@ -195,8 +195,8 @@ public class FavoriteFragment extends Fragment {
                                      u = fbs.getCurrentUser();
                                     if (u != null) {
                                         Meal meal = document.toObject(Meal.class);
-                                        if (u.getFavorites().contains(meal.getName()))
-                                            meals.add(document.toObject(Meal.class));
+                                        if (u.getFavorites().contains(meal.getId())){
+                                            meals.add(document.toObject(Meal.class));}
                                     }
                                 }
 
