@@ -84,7 +84,7 @@ public class MealDetailsFragment extends Fragment {
         init();
         ImageView ivMealPhoto = getView().findViewById(R.id.ivMealPicDetails);
 
-        ivMealPhoto.setOnClickListener(new View.OnClickListener() {
+     /*   ivMealPhoto.setOnClickListener(new View.OnClickListener() {
 
             @Override
 
@@ -101,7 +101,7 @@ public class MealDetailsFragment extends Fragment {
                 isEnlarged = !isEnlarged;
 
             }
-        });
+        });*/
     }
         public void init()
         {
