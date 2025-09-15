@@ -1,0 +1,213 @@
+@startuml
+class BuildConfig {
++ {static} boolean DEBUG
++ {static} String APPLICATION_ID
++ {static} String BUILD_TYPE
++ {static} int VERSION_CODE
++ {static} String VERSION_NAME
+}
+
+class Utils {
+- {static} Utils instance
+- FirebaseServices fbs
+- String imageStr
+}
+
+class ForgotPasswordFragment {
+- FirebaseServices fbs
+- EditText etEmail
+- Button btnReset
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
+}
+
+class FirebaseServices {
+- {static} FirebaseServices instance
+- FirebaseAuth auth
+- FirebaseFirestore fire
+- FirebaseStorage storage
+- Uri selectedImageURL
+- User currentUser
+- Meal selectedMeal
+- boolean userChangeFlag
+}
+
+class CropperActivity {
+~ String result
+~ Uri fileUri
+}
+
+class SearchFragment {
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
+}
+
+class MealListFragment {
+- RecyclerView recyclerView
+- FirebaseServices fbs
+- ImageView ivProfile
+- MealAdapter myAdapter
+- SearchView srchView
+- ArrayList<Meal> meals
+- ArrayList<Meal> rests
+- RecyclerView rvRests
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
+}
+
+class LoginFragment {
+- EditText etUsername
+- Button tvSignupLink
+- Button btnLogin
+- Button btnAddLinkAddMeal
+- FirebaseServices fbs
+- Button btnForgotPasswordLink
+- ImageView logo
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
+}
+
+class User {
+- String firstName
+- String lastName
+- String userName
+- String Address
+- String phoneNumber
+- String photo
+- ArrayList<String> favorites
+}
+
+class Meal {
+- String id
+- String name
+- Double price
+- String ingredients
+- String picture
++ {static} Creator<Meal> CREATOR
+}
+
+interface UserCallback {
+}
+class MealAdapter {
+~ Context context
+~ ArrayList<Meal> mealsList
+- FirebaseServices fbs
+- MealAdapter.OnItemClickListener itemClickListener
+}
+
+class MealAdapter$MyViewHolder {
++ ImageView ivFavourite
+~ TextView mealName
+~ ImageView ivMeal
+}
+
+interface MealAdapter$OnItemClickListener {
+}
+enum ListFragmentType {
++  Regular
+}
+
+class ExampleInstrumentedTest {
+}
+class FavoriteFragment {
+- RecyclerView recyclerView
+- FirebaseServices fbs
+- MealAdapter mealAdapter
+- SearchView searchView
+- ArrayList<Meal> meals
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
+}
+
+class MainActivity {
+- FirebaseServices fbs
+- BottomNavigationView bottomNavigationView
+- User userData
+- Stack<Fragment> fragmentStack
+- FrameLayout fragmentContainer
+- ListFragmentType listType
+- ProgressDialog progressDialog
+}
+
+class MealDetailsFragment {
+- TextView tvMealName
+- ImageView ivMealPic
+- Meal myMeal
+- FirebaseServices fbs
+- Button btnBack
+- boolean isEnlarged
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
+}
+
+class BasicInfoAboutAppFragment {
+- Button btnBack
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
+}
+
+class ExampleUnitTest {
+}
+class AddMealFragment {
+- {static} int GALLERY_REQUEST_CODE
+- {static} int UCROP_REQUEST_CODE
+~ ImageView img
+~ Uri resultUri
+~ ActivityResultLauncher<String> mGetContent
+- String strPicture
+- FirebaseServices fbs
+- Button btnAdd
+- EditText etName
+- Utils utils
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
+}
+
+class SignupFragment {
+- EditText etUsername
+- Button btnSignup
+~ ImageView ivUserPhoto
+- FirebaseServices fbs
+- Utils msg
+- {static} int GALLERY_REQUEST_CODE
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
+}
+
+
+
+Fragment <|-- ForgotPasswordFragment
+AppCompatActivity <|-- CropperActivity
+Fragment <|-- SearchFragment
+Fragment <|-- MealListFragment
+Fragment <|-- LoginFragment
+Parcelable <|.. Meal
+Adapter <|-- MealAdapter
+MealAdapter +.. MealAdapter$MyViewHolder
+ViewHolder <|-- MealAdapter$MyViewHolder
+MealAdapter +.. MealAdapter$OnItemClickListener
+Fragment <|-- FavoriteFragment
+AppCompatActivity <|-- MainActivity
+Fragment <|-- MealDetailsFragment
+Fragment <|-- BasicInfoAboutAppFragment
+Fragment <|-- AddMealFragment
+Fragment <|-- SignupFragment
+@enduml
